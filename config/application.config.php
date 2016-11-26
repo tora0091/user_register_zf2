@@ -29,6 +29,7 @@ return array(
         // modules are loaded. These effectively override configuration
         // provided by modules themselves. Paths may use GLOB_BRACE notation.
         'config_glob_paths' => array(
+            // refernce:https://framework.zend.com/manual/2.4/en/tutorials/config.advanced.html
             sprintf('config/autoload/{,*.}{global,%s,local}.php', $env)
         ),
 
