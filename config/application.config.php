@@ -5,6 +5,8 @@
  * @see http://framework.zend.com/manual/current/en/tutorials/config.advanced.html#environment-specific-system-configuration
  * @see http://framework.zend.com/manual/current/en/tutorials/config.advanced.html#environment-specific-application-configuration
  */
+$env = getenv('APPLICATION_ENV') ?: 'production';
+
 return array(
     // This should be an array of module namespaces used in the application.
     'modules' => array(
@@ -27,7 +29,7 @@ return array(
         // modules are loaded. These effectively override configuration
         // provided by modules themselves. Paths may use GLOB_BRACE notation.
         'config_glob_paths' => array(
-            'config/autoload/{{,*.}global,{,*.}local}.php',
+            sprintf('config/autoload/{,*.}{global,%s,local}.php', $env)
         ),
 
         // Whether or not to enable a configuration cache.
