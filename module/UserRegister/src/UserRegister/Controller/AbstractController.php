@@ -2,6 +2,7 @@
 
 namespace UserRegister\Controller;
 
+use Zend\InputFilter\InputFilter;
 use Zend\Mvc\Controller\AbstractActionController;
 
 class AbstractController extends AbstractActionController
@@ -18,5 +19,16 @@ class AbstractController extends AbstractActionController
             return $config[$name];
         }
         return [];
+    }
+    
+    /**
+     * 入力バリデーション設定および取得
+     * @param InputFilter $input バリデーションオブジェクト
+     * @return InputFilter
+     */
+    public function getInputFilter(InputFilter $input)
+    {
+        $input->setData($this->getRequest()->getPost());
+        return $input;
     }
 }
