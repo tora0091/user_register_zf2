@@ -13,11 +13,31 @@ return [
     'router' => [
         'routes' => [
             'home' => [
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'Literal',
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
                         'controller' => 'UserRegister\Controller\Main',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'register' =>[
+                'type' => 'Segment',
+                'options' => [
+                    'route'    => '/register[/:action]',
+                    'defaults' => [
+                        'controller' => 'UserRegister\Controller\Register',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'search' =>[
+                'type' => 'Literal',
+                'options' => [
+                    'route'    => '/search',
+                    'defaults' => [
+                        'controller' => 'UserRegister\Controller\Search',
                         'action'     => 'index',
                     ],
                 ],
@@ -46,6 +66,8 @@ return [
     'controllers' => [
         'invokables' => [
             'UserRegister\Controller\Main' => Controller\MainController::class,
+            'UserRegister\Controller\Register' => Controller\RegisterController::class,
+            'UserRegister\Controller\Search' => Controller\SearchController::class,
         ],
     ],
     'view_manager' => [
