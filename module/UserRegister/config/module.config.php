@@ -25,7 +25,7 @@ return [
             'register' =>[
                 'type' => 'Segment',
                 'options' => [
-                    'route'    => '/register[/:action]',
+                    'route'    => '/register[/][:action]',
                     'defaults' => [
                         'controller' => 'UserRegister\Controller\Register',
                         'action'     => 'index',
