@@ -4,9 +4,22 @@ namespace UserRegister\Controller;
 
 use Zend\InputFilter\InputFilter;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 class AbstractController extends AbstractActionController
 {
+    /** @var $serviceLocator */
+    protected $serviceLocator;
+
+    /**
+     * Construt
+     * @param ServiceLocatorInterface $serviceLocator
+     */    
+    public function __construct(ServiceLocatorInterface $serviceLocator)
+    {
+        $this->serviceLocator = $serviceLocator;
+    }
+
     /**
      * 環境定義変数を取得する
      * @param string $name 環境変数
@@ -14,7 +27,7 @@ class AbstractController extends AbstractActionController
      */
     public function getConfig($name = 'default')
     {
-        $config = $this->getEvent()->getApplication()->getConfig();
+        $config = $this->serviceLocator->get('config');
         if (isset($config[$name])) {
             return $config[$name];
         }

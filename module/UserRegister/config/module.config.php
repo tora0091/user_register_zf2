@@ -65,9 +65,11 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'UserRegister\Controller\Main' => Controller\MainController::class,
-            'UserRegister\Controller\Register' => Controller\RegisterController::class,
-            'UserRegister\Controller\Search' => Controller\SearchController::class,
+        ],
+        'factories' => [
+            'UserRegister\Controller\Main' => Controller\Factories\MainControllerFactory::class,
+            'UserRegister\Controller\Register' => Controller\Factories\RegisterControllerFactory::class,
+            'UserRegister\Controller\Search' => Controller\Factories\SearchControllerFactory::class,
         ],
     ],
     'view_manager' => [
