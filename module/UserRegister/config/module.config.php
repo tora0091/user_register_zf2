@@ -51,6 +51,7 @@ return [
         ],
         'factories' => [
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
+            'SessionManager' => 'Zend\Session\Service\SessionManagerFactory',
         ],
     ],
     'translator' => [
@@ -99,5 +100,19 @@ return [
         'extensions' => [
             TwigExtension\CommonExtension::class,
         ],
+    ],
+    // Session
+    'session' => [
+        'class' => '\Zend\Session\Config\SessionConfig',
+        'options' => [
+            'name' => 'user_register',
+            'remember_me_seconds' => 86400,
+            'use_cookies' => true,
+            'cookie_httponly' => true,
+            'cookie_lifetime' => 86400,
+            'cookie_path' => '/',
+            'cookie_secure' => true,
+        ],
+        'storage' => '\Zend\Session\Storage\SessionArrayStorage',
     ],
 ];

@@ -11,6 +11,7 @@ namespace UserRegister;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\ServiceManager\ServiceManager;
 
 //use Zend\Db\Adapter\Adapter;
 //use Zend\Db\TableGateway\Feature\GlobalAdapterFeatrue;
@@ -22,6 +23,8 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+
+        $this->bootstrapSession($e->getApplication()->getServiceManager());
 
 //		$this->createDbAdapter($e);
     }
@@ -40,6 +43,20 @@ class Module
                 ),
             ),
         );
+    }
+
+    public function bootstrapSession(ServiceManager $serviceManager)
+    {
+        $sesConf = $serviceManager->get('config')['session'];
+        
+        $sessionConfig = new $sesConf['class']();
+        $sessionConfig->setOptions($sesConf['options']);
+
+        $sessionManager = $serviceManager->get('SessionManager');
+        $sessionManager->setConfig($sessionConfig);
+        $sessionManager->setStorage(new $sesConf['storage']());
+
+        $sessionManager->start();
     }
 
 //	protected function createDbAdapter(MvcEvent $e)
