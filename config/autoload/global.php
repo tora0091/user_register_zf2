@@ -11,12 +11,5 @@
  * file.
  */
 
-return array(
-//	'db' => [
-//		'driver' => 'Pdo',
-//		'dsn' => 'mysql:dbname=simpleboard;host=localhost',
-//		'driver_options' => [
-//			PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'',
-//		],
-//	],
-);
+return [
+];
