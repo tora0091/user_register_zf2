@@ -2,12 +2,15 @@
 
 namespace UserRegister\Controller;
 
+use UserRegister\Utils\ContainerTrait;
 use Zend\InputFilter\InputFilter;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 class AbstractController extends AbstractActionController
 {
+    use ContainerTrait;
+
     /** @var $serviceLocator */
     protected $serviceLocator;
 
@@ -43,5 +46,49 @@ class AbstractController extends AbstractActionController
     {
         $input->setData($this->getRequest()->getPost());
         return $input;
+    }
+    
+    /**
+     * セッション取得
+     * @param string $name セッション名
+     * @return Container
+     */
+    public function getSession($name = null)
+    {
+        return $this->getContainer($name);
+    }
+
+    /**
+     * Globalセッション取得
+     * @return Container
+     */    
+    public function getGlobalSession()
+    {
+        return $this->getSession('global');
+    }
+    
+    /**
+     * セッション削除
+     * @param string $name セッション名
+     */
+    public function clearSession($name)
+    {
+        $this->clearContainer($name);
+    }
+    
+    /**
+     * セッション削除
+     */
+    public function clearGlobalSession()
+    {
+        $this->clearContainer('global');
+    }
+    
+    /**
+     * 
+     */
+    public function clearAll()
+    {
+        $this->clearContainer();
     }
 }
