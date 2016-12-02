@@ -6,6 +6,8 @@ use UserRegister\Utils\ContainerTrait;
 use Zend\InputFilter\InputFilter;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\Db\Adapter\Adapter;
+use Zend\Db\TableGateway\Feature\GlobalAdapterFeature;
 
 class AbstractController extends AbstractActionController
 {
@@ -13,6 +15,9 @@ class AbstractController extends AbstractActionController
 
     /** @var $serviceLocator */
     protected $serviceLocator;
+
+    /** @var $adapter */
+    private $adapter;
 
     /**
      * Construt
@@ -85,10 +90,55 @@ class AbstractController extends AbstractActionController
     }
     
     /**
-     * 
+     * セッション全削除
      */
     public function clearAll()
     {
         $this->clearContainer();
+    }
+    
+    /**
+     * DB Adapter
+     * @return Adapter
+     */
+    private function getAdapter()
+    {
+        if ($this->adapter == null) {
+            $this->adapter = GlobalAdapterFeature::getStaticAdapter();
+        }
+        return $this->adapter;
+    }
+
+    /**
+     * db connection
+     * @return ConnectionInterface
+     */
+    public function connection()
+    {
+        return $this->getAdapter()->getDriver()->getConnection();
+    }
+    
+    /**
+     * begin
+     */
+    public function begin()
+    {
+        $this->connection()->beginTransaction();
+    }
+
+    /**
+     * commit
+     */
+    public function commit()
+    {
+        $this->connection()->commit();
+    }
+
+    /**
+     * rollback
+     */
+    public function rollback()
+    {
+        $this->connection()->rollback();
     }
 }
