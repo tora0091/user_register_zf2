@@ -9,26 +9,39 @@
 </tr>
 <tr>
     <td>名前<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
-    <td>姓&nbsp;<input type="text" name="family_name" value=""/>&nbsp;&nbsp;名&nbsp;<input type="text" name="last_name" value=""/></td>
+    <td>姓&nbsp;<input type="text" name="family_name" value=""/>&nbsp;&nbsp;
+        名&nbsp;<input type="text" name="last_name" value=""/></td>
 </tr>
 <tr>
     <td>名前（カナ）<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
-    <td>セイ&nbsp;<input type="text" name="family_name_kana" value=""/>&nbsp;&nbsp;メイ&nbsp;<input type="text" name="last_name_kana" value=""/></td>
+    <td>セイ&nbsp;<input type="text" name="family_name_kana" value=""/>&nbsp;&nbsp;
+        メイ&nbsp;<input type="text" name="last_name_kana" value=""/></td>
 </tr>
 <tr>
-    <td>電話番号<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
-    <td><input type="text" name="tel1" value="" size="5"/>-<input type="text" name="tel2" value="" size="5"/>-<input type="text" name="tel3" value="" size="5"/></td>
+    <td>電話番号<span style="font-size: 10px; color: #ff0000;">[必須]※どちらか必須</span></td>
+    <td><input type="text" name="phone_number1" value="" size="5"/>-
+        <input type="text" name="phone_number2" value="" size="5"/>-
+        <input type="text" name="phone_number3" value="" size="5"/></td>
+</tr>
+<tr>
+    <td>携帯電話番号<span style="font-size: 10px; color: #ff0000;">[必須]※どちらか必須</span></td>
+    <td><input type="text" name="mobile_phone_number1" value="" size="5"/>-
+        <input type="text" name="mobile_phone_number2" value="" size="5"/>-
+        <input type="text" name="mobile_phone_number3" value="" size="5"/></td>
 </tr>
 <tr>
     <td>郵便番号</td>
-    <td><input type="text" name="post_code1" value="" size="3"/>-<input type="text" name="post_code2" value="" size="4"/></td>
+    <td><input type="text" name="post_code1" value="" size="3"/>-
+        <input type="text" name="post_code2" value="" size="4"/></td>
 </tr>
 <tr>
     <td>住所</td>
     <td>
-        都道府県<span style="font-size: 10px; color: #ff0000;">[必須]</span><input type="text" name="prefecture" value=""/>
+        都道府県<span style="font-size: 10px; color: #ff0000;">[必須]</span>
+        <input type="text" name="prefecture" value=""/>
         <br />
-        市区町村<span style="font-size: 10px; color: #ff0000;">[必須]</span><input type="text" name="address_city" value=""/>
+        市区町村<span style="font-size: 10px; color: #ff0000;">[必須]</span>
+        <input type="text" name="address_city" value=""/>
         <br />
         その他<input type="text" name="address_other" value=""/>
     </td>
@@ -39,7 +52,6 @@
 </tr>
 </table>
 <input type="submit" value="登録">
-<input type="hidden" name="action" value="register">
 </form>
 
 {% endblock %}
