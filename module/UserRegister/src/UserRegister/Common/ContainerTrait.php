@@ -1,6 +1,6 @@
 <?php
 
-namespace UserRegister\Utils;
+namespace UserRegister\Common;
 
 use Zend\Session\Container;
 

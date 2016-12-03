@@ -2,7 +2,7 @@
 
 namespace UserRegister\Controller;
 
-use UserRegister\Utils\ContainerTrait;
+use UserRegister\Common\ContainerTrait;
 use Zend\InputFilter\InputFilter;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\ServiceManager\ServiceLocatorInterface;
