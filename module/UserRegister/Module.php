@@ -48,15 +48,14 @@ class Module
 
     public function bootstrapSession(ServiceManager $serviceManager)
     {
-        $sesConf = $serviceManager->get('config')['session'];
-        
-        $sessionConfig = new $sesConf['class']();
-        $sessionConfig->setOptions($sesConf['options']);
-
         $sessionManager = $serviceManager->get('SessionManager');
-        $sessionManager->setConfig($sessionConfig);
-        $sessionManager->setStorage(new $sesConf['storage']());
-
+        if ($sessionManager->sessionExists()) {
+            $sesConf = $serviceManager->get('config')['session'];
+            $sessionConfig = new $sesConf['class']();
+            $sessionConfig->setOptions($sesConf['options']);
+            $sessionManager->setConfig($sessionConfig);
+            $sessionManager->setStorage(new $sesConf['storage']());
+        }
         $sessionManager->start();
     }
 
