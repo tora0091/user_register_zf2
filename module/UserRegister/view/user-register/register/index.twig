@@ -1,3 +1,4 @@
+{% import 'user-register/macro/form.twig' as form %}
 {% block container %}
 <h2>顧客登録</h2>
 
@@ -5,17 +6,26 @@
 <table>
 <tr>
     <td>社員番号<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
-    <td><input type="text" name="number" value="{{ inputs.number }}"/></td>
+    <td>
+        <input type="text" name="number" value="{{ inputs.number }}"/>&nbsp;&nbsp;
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.number)}}</font>
+    </td>
 </tr>
 <tr>
     <td>名前<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
     <td>姓&nbsp;<input type="text" name="family_name" value="{{ inputs.family_name }}"/>&nbsp;&nbsp;
-        名&nbsp;<input type="text" name="last_name" value="{{ inputs.last_name }}"/></td>
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.family_name)}}</font>&nbsp;&nbsp;
+        名&nbsp;<input type="text" name="last_name" value="{{ inputs.last_name }}"/>&nbsp;&nbsp;
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.last_name)}}</font>&nbsp;&nbsp;
+    </td>
 </tr>
 <tr>
     <td>名前（カナ）<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
     <td>セイ&nbsp;<input type="text" name="family_name_kana" value="{{ inputs.family_name_kana }}"/>&nbsp;&nbsp;
-        メイ&nbsp;<input type="text" name="last_name_kana" value="{{ inputs.last_name_kana }}"/></td>
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.family_name_kana)}}</font>&nbsp;&nbsp;
+        メイ&nbsp;<input type="text" name="last_name_kana" value="{{ inputs.last_name_kana }}"/>&nbsp;&nbsp;
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.last_name_kana)}}</font>&nbsp;&nbsp;
+    </td>
 </tr>
 <tr>
     <td>電話番号<span style="font-size: 10px; color: #ff0000;">[必須]※どちらか必須</span></td>
