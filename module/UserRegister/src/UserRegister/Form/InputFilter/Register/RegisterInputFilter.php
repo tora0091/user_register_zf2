@@ -23,7 +23,7 @@ class RegisterInputFilter extends AbstractInputFilter
                     'name' => 'NotEmpty',
                     'options' => [
                         'messages' => [
-                            NotEmpty::isEmpty => Messages::NUMBER_IS_EMPTY,
+                            NotEmpty::IS_EMPTY => Messages::NUMBER_IS_EMPTY,
                         ],
                     ],
                 ],
@@ -46,7 +46,7 @@ class RegisterInputFilter extends AbstractInputFilter
                     'name' => 'NotEmpty',
                     'options' => [
                         'messages' => [
-                            NotEmpty::isEmpty => Messages::FAMILY_NAME_IS_EMPTY,
+                            NotEmpty::IS_EMPTY => Messages::FAMILY_NAME_IS_EMPTY,
                         ],
                     ],
                 ],
@@ -73,7 +73,7 @@ class RegisterInputFilter extends AbstractInputFilter
                     'name' => 'NotEmpty',
                     'options' => [
                         'messages' => [
-                            NotEmpty::isEmpty => Messages::LAST_NAME_IS_EMPTY,
+                            NotEmpty::IS_EMPTY => Messages::LAST_NAME_IS_EMPTY,
                         ],
                     ],
                 ],
@@ -100,7 +100,7 @@ class RegisterInputFilter extends AbstractInputFilter
                     'name' => 'NotEmpty',
                     'options' => [
                         'messages' => [
-                            NotEmpty::isEmpty => Messages::FAMILY_NAME_KANA_IS_EMPTY,
+                            NotEmpty::IS_EMPTY => Messages::FAMILY_NAME_KANA_IS_EMPTY,
                         ],
                     ],
                 ],
@@ -127,7 +127,7 @@ class RegisterInputFilter extends AbstractInputFilter
                     'name' => 'NotEmpty',
                     'options' => [
                         'messages' => [
-                            NotEmpty::isEmpty => Messages::LAST_NAME_KANA_IS_EMPTY,
+                            NotEmpty::IS_EMPTY => Messages::LAST_NAME_KANA_IS_EMPTY,
                         ],
                     ],
                 ],

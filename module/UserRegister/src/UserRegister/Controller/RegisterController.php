@@ -22,6 +22,13 @@ class RegisterController extends AbstractController
     public function indexAction()
     {
         $view = new ViewModel();
+
+        $session = $this->getSession();
+        if (!empty($session->errMsg)) {
+            $view->setVariable('errMsg', $session->errMsg);
+        }
+        
+        $view->setVariable('inputs', $session->inputs);
         $view->setTemplate(self::TEMPLATE_INDEX);
         return $view;
     }
@@ -32,9 +39,14 @@ class RegisterController extends AbstractController
      */
     public function validateAction()
     {
+        $session = $this->getSession();
+        
         $input = $this->getInputFilter(new RegisterInputFilter());
+        $session->inputs = $input->getValues();
+        
         if (!$input->isValid()) {
             // エラーの場合は入力画面へ戻る
+            $session->errMsg = $input->getMessages();
             return $this->redirect()->toUrl(self::URL_INDEX_ACTION);
         }
         return $this->redirect()->toUrl(self::URL_CONFIRM_ACTION);

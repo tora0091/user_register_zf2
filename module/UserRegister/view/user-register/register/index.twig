@@ -5,50 +5,50 @@
 <table>
 <tr>
     <td>社員番号<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
-    <td><input type="text" name="number" value=""/></td>
+    <td><input type="text" name="number" value="{{ inputs.number }}"/></td>
 </tr>
 <tr>
     <td>名前<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
-    <td>姓&nbsp;<input type="text" name="family_name" value=""/>&nbsp;&nbsp;
-        名&nbsp;<input type="text" name="last_name" value=""/></td>
+    <td>姓&nbsp;<input type="text" name="family_name" value="{{ inputs.family_name }}"/>&nbsp;&nbsp;
+        名&nbsp;<input type="text" name="last_name" value="{{ inputs.last_name }}"/></td>
 </tr>
 <tr>
     <td>名前（カナ）<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
-    <td>セイ&nbsp;<input type="text" name="family_name_kana" value=""/>&nbsp;&nbsp;
-        メイ&nbsp;<input type="text" name="last_name_kana" value=""/></td>
+    <td>セイ&nbsp;<input type="text" name="family_name_kana" value="{{ inputs.family_name_kana }}"/>&nbsp;&nbsp;
+        メイ&nbsp;<input type="text" name="last_name_kana" value="{{ inputs.last_name_kana }}"/></td>
 </tr>
 <tr>
     <td>電話番号<span style="font-size: 10px; color: #ff0000;">[必須]※どちらか必須</span></td>
-    <td><input type="text" name="phone_number1" value="" size="5"/>-
-        <input type="text" name="phone_number2" value="" size="5"/>-
-        <input type="text" name="phone_number3" value="" size="5"/></td>
+    <td><input type="text" name="phone_number1" value="{{ inputs.phone_number1 }}" size="5"/>-
+        <input type="text" name="phone_number2" value="{{ inputs.phone_number2 }}" size="5"/>-
+        <input type="text" name="phone_number3" value="{{ inputs.phone_number3 }}" size="5"/></td>
 </tr>
 <tr>
     <td>携帯電話番号<span style="font-size: 10px; color: #ff0000;">[必須]※どちらか必須</span></td>
-    <td><input type="text" name="mobile_phone_number1" value="" size="5"/>-
-        <input type="text" name="mobile_phone_number2" value="" size="5"/>-
-        <input type="text" name="mobile_phone_number3" value="" size="5"/></td>
+    <td><input type="text" name="mobile_phone_number1" value="{{ inputs.mobile_phone_number1 }}" size="5"/>-
+        <input type="text" name="mobile_phone_number2" value="{{ inputs.mobile_phone_number2 }}" size="5"/>-
+        <input type="text" name="mobile_phone_number3" value="{{ inputs.mobile_phone_number3 }}" size="5"/></td>
 </tr>
 <tr>
     <td>郵便番号</td>
-    <td><input type="text" name="post_code1" value="" size="3"/>-
-        <input type="text" name="post_code2" value="" size="4"/></td>
+    <td><input type="text" name="post_code1" value="{{ inputs.post_code1 }}" size="3"/>-
+        <input type="text" name="post_code2" value="{{ inputs.post_code2 }}" size="4"/></td>
 </tr>
 <tr>
     <td>住所</td>
     <td>
         都道府県<span style="font-size: 10px; color: #ff0000;">[必須]</span>
-        <input type="text" name="prefecture" value=""/>
+        <input type="text" name="prefecture" value="{{ inputs.prefecture }}"/>
         <br />
         市区町村<span style="font-size: 10px; color: #ff0000;">[必須]</span>
-        <input type="text" name="address_city" value=""/>
+        <input type="text" name="address_city" value="{{ inputs.address_city }}"/>
         <br />
-        その他<input type="text" name="address_other" value=""/>
+        その他<input type="text" name="address_other" value="{{ inputs.address_other }}"/>
     </td>
 </tr>
 <tr>
     <td>所属部署<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
-    <td><input type="text" name="section" value=""/></td>
+    <td><input type="text" name="section" value="{{ inputs.section }}"/></td>
 </tr>
 </table>
 <input type="submit" value="登録">

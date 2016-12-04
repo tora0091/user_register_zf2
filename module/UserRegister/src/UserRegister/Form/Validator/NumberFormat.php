@@ -10,7 +10,7 @@ class NumberFormat extends AbstractValidator
     const INVALID = 'numberFormatInvalid';
 
     protected $messageTemplates = [
-        self::INVALID => Messages::INVAL_NUMBER_FORMAT,
+        self::INVALID => Messages::NUMBER_INVAL_FORMAT,
     ];
 
     protected $options = [
