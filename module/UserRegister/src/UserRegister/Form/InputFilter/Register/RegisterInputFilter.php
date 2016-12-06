@@ -21,6 +21,7 @@ class RegisterInputFilter extends AbstractInputFilter
             'validators' => [
                 [
                     'name' => 'NotEmpty',
+                    'break_chain_on_failure' => ture,
                     'options' => [
                         'messages' => [
                             NotEmpty::IS_EMPTY => Messages::NUMBER_IS_EMPTY,
@@ -29,6 +30,7 @@ class RegisterInputFilter extends AbstractInputFilter
                 ],
                 [
                     'name' => 'UserRegister\Form\Validator\NumberFormat',
+                    'break_chain_on_failure' => ture,
                 ],
             ],
         ]);
@@ -44,6 +46,7 @@ class RegisterInputFilter extends AbstractInputFilter
             'validators' => [
                 [
                     'name' => 'NotEmpty',
+                    'break_chain_on_failure' => ture,
                     'options' => [
                         'messages' => [
                             NotEmpty::IS_EMPTY => Messages::FAMILY_NAME_IS_EMPTY,
@@ -52,6 +55,7 @@ class RegisterInputFilter extends AbstractInputFilter
                 ],
                 [
                     'name' => 'StringLength',
+                    'break_chain_on_failure' => ture,
                     'options' => [
                         'min' => 1,
                         'max' => 20,
@@ -71,6 +75,7 @@ class RegisterInputFilter extends AbstractInputFilter
             'validators' => [
                 [
                     'name' => 'NotEmpty',
+                    'break_chain_on_failure' => ture,
                     'options' => [
                         'messages' => [
                             NotEmpty::IS_EMPTY => Messages::LAST_NAME_IS_EMPTY,
@@ -79,6 +84,7 @@ class RegisterInputFilter extends AbstractInputFilter
                 ],
                 [
                     'name' => 'StringLength',
+                    'break_chain_on_failure' => ture,
                     'options' => [
                         'min' => 1,
                         'max' => 20,
@@ -98,6 +104,7 @@ class RegisterInputFilter extends AbstractInputFilter
             'validators' => [
                 [
                     'name' => 'NotEmpty',
+                    'break_chain_on_failure' => ture,
                     'options' => [
                         'messages' => [
                             NotEmpty::IS_EMPTY => Messages::FAMILY_NAME_KANA_IS_EMPTY,
@@ -106,6 +113,7 @@ class RegisterInputFilter extends AbstractInputFilter
                 ],
                 [
                     'name' => 'StringLength',
+                    'break_chain_on_failure' => ture,
                     'options' => [
                         'min' => 1,
                         'max' => 40,
@@ -125,6 +133,7 @@ class RegisterInputFilter extends AbstractInputFilter
             'validators' => [
                 [
                     'name' => 'NotEmpty',
+                    'break_chain_on_failure' => ture,
                     'options' => [
                         'messages' => [
                             NotEmpty::IS_EMPTY => Messages::LAST_NAME_KANA_IS_EMPTY,
@@ -133,6 +142,7 @@ class RegisterInputFilter extends AbstractInputFilter
                 ],
                 [
                     'name' => 'StringLength',
+                    'break_chain_on_failure' => ture,
                     'options' => [
                         'min' => 1,
                         'max' => 40,

@@ -1,9 +1,5 @@
 {% macro showErrorMessage(messages) %}
-    {% set isShow = true %}
     {% for msg in messages %}
-        {% if isShow == true %}
-            {{ msg }}
-            {% set isShow = false %}
-        {% endif %}
+        {{ msg }}
     {% endfor %}
 {% endmacro %}
