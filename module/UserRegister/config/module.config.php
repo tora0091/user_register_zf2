@@ -45,6 +45,8 @@ return [
         ],
     ],
     'service_manager' => [
+        'invokables' => [
+        ],
         'abstract_factories' => [
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
             'Zend\Log\LoggerAbstractServiceFactory',
@@ -52,6 +54,9 @@ return [
         'factories' => [
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
             'SessionManager' => 'Zend\Session\Service\SessionManagerFactory',
+            'ViewHelperManager' => 'Zend\Mvc\Service\ViewHelperManagerFactory',
+            // Service
+            'UserRegister\Service\RegisterService' => Service\Factories\RegisterServiceFactory::class,
         ],
     ],
     'translator' => [

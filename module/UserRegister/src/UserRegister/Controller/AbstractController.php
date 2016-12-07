@@ -9,10 +9,13 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\TableGateway\Feature\GlobalAdapterFeature;
 
-class AbstractController extends AbstractActionController
+abstract class AbstractController extends AbstractActionController
 {
     use ContainerTrait;
 
+    /** @var service path */
+    const SERVICE_PATH = 'UserRegister\Service\\';
+    
     /** @var $serviceLocator */
     protected $serviceLocator;
 
@@ -28,6 +31,19 @@ class AbstractController extends AbstractActionController
         $this->serviceLocator = $serviceLocator;
     }
 
+    /**
+     * サービス取得
+     * @param string $name サービス名
+     * @return object
+     */
+    public function getService($name)
+    {
+        if (!strpos(self::SERVICE_PATH, $name)) {
+            $name = self::SERVICE_PATH . $name;
+        }
+        return $this->serviceLocator->get($name);
+    }
+    
     /**
      * 環境定義変数を取得する
      * @param string $name 環境変数
