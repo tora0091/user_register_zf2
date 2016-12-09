@@ -46,6 +46,8 @@ return [
     ],
     'service_manager' => [
         'invokables' => [
+            // Table
+            'UserRegister\Resource\Db\Table\PrefectureTable' => Resource\Db\Table\PrefectureTable::class,
         ],
         'abstract_factories' => [
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',

@@ -22,7 +22,9 @@ class RegisterController extends AbstractController
     public function indexAction()
     {
         $view = new ViewModel();
-
+        
+        $registerService = $this->getService('RegisterService')->getPrefecture();
+        
         $session = $this->getSession();
         if (!empty($session->errMsg)) {
             $view->setVariable('errMsg', $session->errMsg);
