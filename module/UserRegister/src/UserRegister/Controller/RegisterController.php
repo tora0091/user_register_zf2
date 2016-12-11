@@ -23,8 +23,11 @@ class RegisterController extends AbstractController
     {
         $view = new ViewModel();
         
-        $registerService = $this->getService('RegisterService')->getPrefecture();
-        
+        /** @var $registerService UserRegister\Service\RegisterServicve */
+        $registerService = $this->getService('RegisterService');
+        $prefectureList = $registerService->getPrefecture();
+        $view->setVariable('prefectureList', $prefectureList);
+
         $session = $this->getSession();
         if (!empty($session->errMsg)) {
             $view->setVariable('errMsg', $session->errMsg);

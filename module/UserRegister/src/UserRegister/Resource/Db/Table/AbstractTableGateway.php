@@ -43,11 +43,11 @@ abstract class AbstractTableGateway
     }
 
     /**
-     * select
-     * @return ArrayObject
+     * fetchAll
+     * @return array
      */
-    public function select()
+    public function fetchAll()
     {
-        return $this->getTableGateway()->getSql()->select();
+        return $this->getTableGateway()->select()->toArray();
     }
 }

@@ -48,7 +48,13 @@
     <td>住所</td>
     <td>
         都道府県<span style="font-size: 10px; color: #ff0000;">[必須]</span>
-        <input type="text" name="prefecture" value="{{ inputs.prefecture }}"/>
+        <select name="prefecture">
+            <option value="">選択してください</option>
+        {% for prefecture in prefectureList %}
+            <option value="{{ prefecture.id }}"{% if inputs.prefecture == prefecture.id %} selected{% endif %}>{{ prefecture.id }}:{{ prefecture.name }}</option>
+        {% endfor %}
+        </select>
+        
         <br />
         市区町村<span style="font-size: 10px; color: #ff0000;">[必須]</span>
         <input type="text" name="address_city" value="{{ inputs.address_city }}"/>
