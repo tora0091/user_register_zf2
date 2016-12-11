@@ -22,5 +22,7 @@ class Messages
     // 名前（メイ）
     const LAST_NAME_KANA_IS_EMPTY = "名前（メイ）は必須です";
     
-    
+    // 都道府県
+    const PREFECTURE_IS_EMPTY = "都道府県は必須です";
+    const PREFECTURE_INVAL_DATA = "都道府県に不正な値が設定されています";
 }

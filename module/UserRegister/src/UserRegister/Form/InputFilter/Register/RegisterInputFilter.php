@@ -4,6 +4,7 @@ namespace UserRegister\Form\InputFilter\Register;
 
 use UserRegister\Form\InputFilter\AbstractInputFilter;
 use UserRegister\Common\Messages;
+use Zend\Validator\Between;
 use Zend\Validator\NotEmpty;
 
 class RegisterInputFilter extends AbstractInputFilter
@@ -21,7 +22,7 @@ class RegisterInputFilter extends AbstractInputFilter
             'validators' => [
                 [
                     'name' => 'NotEmpty',
-                    'break_chain_on_failure' => ture,
+                    'break_chain_on_failure' => true,
                     'options' => [
                         'messages' => [
                             NotEmpty::IS_EMPTY => Messages::NUMBER_IS_EMPTY,
@@ -30,7 +31,7 @@ class RegisterInputFilter extends AbstractInputFilter
                 ],
                 [
                     'name' => 'UserRegister\Form\Validator\NumberFormat',
-                    'break_chain_on_failure' => ture,
+                    'break_chain_on_failure' => true,
                 ],
             ],
         ]);
@@ -46,7 +47,7 @@ class RegisterInputFilter extends AbstractInputFilter
             'validators' => [
                 [
                     'name' => 'NotEmpty',
-                    'break_chain_on_failure' => ture,
+                    'break_chain_on_failure' => true,
                     'options' => [
                         'messages' => [
                             NotEmpty::IS_EMPTY => Messages::FAMILY_NAME_IS_EMPTY,
@@ -55,7 +56,7 @@ class RegisterInputFilter extends AbstractInputFilter
                 ],
                 [
                     'name' => 'StringLength',
-                    'break_chain_on_failure' => ture,
+                    'break_chain_on_failure' => true,
                     'options' => [
                         'min' => 1,
                         'max' => 20,
@@ -75,7 +76,7 @@ class RegisterInputFilter extends AbstractInputFilter
             'validators' => [
                 [
                     'name' => 'NotEmpty',
-                    'break_chain_on_failure' => ture,
+                    'break_chain_on_failure' => true,
                     'options' => [
                         'messages' => [
                             NotEmpty::IS_EMPTY => Messages::LAST_NAME_IS_EMPTY,
@@ -84,7 +85,7 @@ class RegisterInputFilter extends AbstractInputFilter
                 ],
                 [
                     'name' => 'StringLength',
-                    'break_chain_on_failure' => ture,
+                    'break_chain_on_failure' => true,
                     'options' => [
                         'min' => 1,
                         'max' => 20,
@@ -104,7 +105,7 @@ class RegisterInputFilter extends AbstractInputFilter
             'validators' => [
                 [
                     'name' => 'NotEmpty',
-                    'break_chain_on_failure' => ture,
+                    'break_chain_on_failure' => true,
                     'options' => [
                         'messages' => [
                             NotEmpty::IS_EMPTY => Messages::FAMILY_NAME_KANA_IS_EMPTY,
@@ -113,7 +114,7 @@ class RegisterInputFilter extends AbstractInputFilter
                 ],
                 [
                     'name' => 'StringLength',
-                    'break_chain_on_failure' => ture,
+                    'break_chain_on_failure' => true,
                     'options' => [
                         'min' => 1,
                         'max' => 40,
@@ -133,7 +134,7 @@ class RegisterInputFilter extends AbstractInputFilter
             'validators' => [
                 [
                     'name' => 'NotEmpty',
-                    'break_chain_on_failure' => ture,
+                    'break_chain_on_failure' => true,
                     'options' => [
                         'messages' => [
                             NotEmpty::IS_EMPTY => Messages::LAST_NAME_KANA_IS_EMPTY,
@@ -142,10 +143,47 @@ class RegisterInputFilter extends AbstractInputFilter
                 ],
                 [
                     'name' => 'StringLength',
-                    'break_chain_on_failure' => ture,
+                    'break_chain_on_failure' => true,
                     'options' => [
                         'min' => 1,
                         'max' => 40,
+                    ],
+                ],
+            ],
+        ]);
+        
+
+
+
+        
+        // 都道府県
+        $this->add([
+            'name' => 'prefecture',
+            'required' => true,
+            'filters' => [
+                ['name' => 'StripTags'],
+                ['name' => 'StringTrim'],
+            ],
+            'validators' => [
+                [
+                    'name' => 'NotEmpty',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'messages' => [
+                            NotEmpty::IS_EMPTY => Messages::PREFECTURE_IS_EMPTY,
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'Between',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'inclusive' => false,
+                        'min' => '1',
+                        'max' => '47',
+                        'messages' => [
+                            Between::NOT_BETWEEN_STRICT => Messages::PREFECTURE_INVAL_DATA,
+                        ],
                     ],
                 ],
             ],
