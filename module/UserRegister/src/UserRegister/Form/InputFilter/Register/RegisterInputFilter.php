@@ -152,10 +152,6 @@ class RegisterInputFilter extends AbstractInputFilter
             ],
         ]);
         
-
-
-
-        
         // 都道府県
         $this->add([
             'name' => 'prefecture',
@@ -178,11 +174,11 @@ class RegisterInputFilter extends AbstractInputFilter
                     'name' => 'Between',
                     'break_chain_on_failure' => true,
                     'options' => [
-                        'inclusive' => false,
+                        'inclusive' => true,
                         'min' => '1',
                         'max' => '47',
                         'messages' => [
-                            Between::NOT_BETWEEN_STRICT => Messages::PREFECTURE_INVAL_DATA,
+                            Between::NOT_BETWEEN => Messages::PREFECTURE_INVAL_DATA,
                         ],
                     ],
                 ],
