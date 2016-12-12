@@ -23,7 +23,7 @@ class PrefectureTable extends AbstractTableGateway
      */
     public function getPrefecture()
     {
-        return $this->fetchAll();
+        return $this->getArray($this->fetchAll());
     }
 }
 

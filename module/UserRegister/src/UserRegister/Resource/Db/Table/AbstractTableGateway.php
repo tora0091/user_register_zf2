@@ -2,6 +2,7 @@
 
 namespace UserRegister\Resource\Db\Table;
 
+use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\Feature\GlobalAdapterFeature;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -44,10 +45,22 @@ abstract class AbstractTableGateway
 
     /**
      * fetchAll
-     * @return array
+     * @return ResultSet
      */
     public function fetchAll()
     {
-        return $this->getTableGateway()->select()->toArray();
+        return $this->getTableGateway()->select();
+    }
+    
+    /**
+     * getArray
+     * @param ResultSet $result
+     */
+    public function getArray(ResultSet $result = null)
+    {
+        if ($result !== null && $result instanceof ResultSet) {
+            return $result->toArray();
+        }
+        return [];
     }
 }
