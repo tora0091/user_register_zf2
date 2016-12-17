@@ -180,16 +180,19 @@ class RegisterInputFilter extends AbstractInputFilter
             ],
             'validators' => [
                 [
-                    'name' => 'NotEmpty',
+                    'name' => 'UserRegister\Form\Validator\NotEmptyOthers',
                     'break_chain_on_failure' => true,
                     'options' => [
+                        'conditionKeys' => [
+                            'mobile_phone_number',
+                        ],
                         'messages' => [
                             NotEmpty::IS_EMPTY => Messages::PHONE_NUMBER_IS_EMPTY,
                         ],
                     ],
                 ],
                 [
-                    'name' => 'StringLength',
+                    'name' => 'UserRegister\Form\Validator\StringLengthEmpty',
                     'break_chain_on_failure' => true,
                     'options' => [
                         'min' => 10,
@@ -201,7 +204,7 @@ class RegisterInputFilter extends AbstractInputFilter
                     ],
                 ],
                 [
-                    'name' => 'Digits',
+                    'name' => 'UserRegister\Form\Validator\DigitsEmpty',
                     'break_chain_on_failure' => true,
                     'options' => [
                         'messages' => [
@@ -222,20 +225,23 @@ class RegisterInputFilter extends AbstractInputFilter
             ],
             'validators' => [
                 [
-                    'name' => 'NotEmpty',
+                    'name' => 'UserRegister\Form\Validator\NotEmptyOthers',
                     'break_chain_on_failure' => true,
                     'options' => [
+                        'conditionKeys' => [
+                            'phone_number',
+                        ],
                         'messages' => [
                             NotEmpty::IS_EMPTY => Messages::MOBILE_PHONE_NUMBER_IS_EMPTY,
                         ],
                     ],
                 ],
                 [
-                    'name' => 'StringLength',
+                    'name' => 'UserRegister\Form\Validator\StringLengthEmpty',
                     'break_chain_on_failure' => true,
                     'options' => [
-                        'min' => 10,
-                        'max' => 10,
+                        'min' => 11,
+                        'max' => 11,
                         'message' => [
                             StringLength::TOO_SHORT => Messages::MOBILE_PHONE_NUMBER_LENGTH,
                             StringLength::TOO_LONG => Messages::MOBILE_PHONE_NUMBER_LENGTH,
@@ -243,7 +249,7 @@ class RegisterInputFilter extends AbstractInputFilter
                     ],
                 ],
                 [
-                    'name' => 'Digits',
+                    'name' => 'UserRegister\Form\Validator\DigitsEmpty',
                     'break_chain_on_failure' => true,
                     'options' => [
                         'messages' => [
