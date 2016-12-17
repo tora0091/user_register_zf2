@@ -7,37 +7,35 @@
 <tr>
     <td>社員番号<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
     <td>
-        <input type="text" name="number" value="{{ inputs.number }}"/>&nbsp;&nbsp;
+        <input type="text" name="number" value="{{ inputs.number }}"/>
         <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.number)}}</font>
     </td>
 </tr>
 <tr>
     <td>名前<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
-    <td>姓&nbsp;<input type="text" name="family_name" value="{{ inputs.family_name }}"/>&nbsp;&nbsp;
-        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.family_name)}}</font>&nbsp;&nbsp;
-        名&nbsp;<input type="text" name="last_name" value="{{ inputs.last_name }}"/>&nbsp;&nbsp;
-        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.last_name)}}</font>&nbsp;&nbsp;
+    <td>姓&nbsp;<input type="text" name="family_name" value="{{ inputs.family_name }}"/>
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.family_name)}}</font>
+        名&nbsp;<input type="text" name="last_name" value="{{ inputs.last_name }}"/>
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.last_name)}}</font>
     </td>
 </tr>
 <tr>
     <td>名前（カナ）<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
-    <td>セイ&nbsp;<input type="text" name="family_name_kana" value="{{ inputs.family_name_kana }}"/>&nbsp;&nbsp;
-        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.family_name_kana)}}</font>&nbsp;&nbsp;
-        メイ&nbsp;<input type="text" name="last_name_kana" value="{{ inputs.last_name_kana }}"/>&nbsp;&nbsp;
-        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.last_name_kana)}}</font>&nbsp;&nbsp;
+    <td>セイ&nbsp;<input type="text" name="family_name_kana" value="{{ inputs.family_name_kana }}"/>
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.family_name_kana)}}</font>
+        メイ&nbsp;<input type="text" name="last_name_kana" value="{{ inputs.last_name_kana }}"/>
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.last_name_kana)}}</font>
     </td>
 </tr>
 <tr>
     <td>電話番号<span style="font-size: 10px; color: #ff0000;">[必須]※どちらか必須</span></td>
-    <td><input type="text" name="phone_number1" value="{{ inputs.phone_number1 }}" size="5"/>-
-        <input type="text" name="phone_number2" value="{{ inputs.phone_number2 }}" size="5"/>-
-        <input type="text" name="phone_number3" value="{{ inputs.phone_number3 }}" size="5"/></td>
+    <td><input type="text" name="phone_number" value="{{ inputs.phone_number }}" size="20" maxlength="10" />
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.phone_number)}}</font>
+    </td>
 </tr>
 <tr>
     <td>携帯電話番号<span style="font-size: 10px; color: #ff0000;">[必須]※どちらか必須</span></td>
-    <td><input type="text" name="mobile_phone_number1" value="{{ inputs.mobile_phone_number1 }}" size="5"/>-
-        <input type="text" name="mobile_phone_number2" value="{{ inputs.mobile_phone_number2 }}" size="5"/>-
-        <input type="text" name="mobile_phone_number3" value="{{ inputs.mobile_phone_number3 }}" size="5"/></td>
+    <td><input type="text" name="mobile_phone_number" value="{{ inputs.mobile_phone_number }}" size="20" maxlength="11" /></td>
 </tr>
 <tr>
     <td>郵便番号</td>
@@ -54,7 +52,7 @@
             <option value="{{ prefecture.id }}"{% if inputs.prefecture == prefecture.id %} selected{% endif %}>{{ prefecture.id }}:{{ prefecture.name }}</option>
         {% endfor %}
         </select>
-        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.prefecture)}}</font>&nbsp;&nbsp;
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.prefecture)}}</font>
         
         <br />
         市区町村<span style="font-size: 10px; color: #ff0000;">[必須]</span>
