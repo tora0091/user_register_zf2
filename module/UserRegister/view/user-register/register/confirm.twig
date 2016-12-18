@@ -1,4 +1,56 @@
 {% block container %}
-register/confirm
+<h2>顧客登録確認</h2>
+
+<table>
+<tr>
+    <td>社員番号</td>
+    <td>{{ inputs.number|e }}</td>
+</tr>
+<tr>
+    <td>名前</td>
+    <td>姓&nbsp;{{ inputs.family_name|e }}
+        名&nbsp;{{ inputs.last_name|e }}
+    </td>
+</tr>
+<tr>
+    <td>名前（カナ）</td>
+    <td>セイ&nbsp;{{ inputs.family_name_kana|e }}
+        メイ&nbsp;{{ inputs.last_name_kana|e }}
+    </td>
+</tr>
+<tr>
+    <td>電話番号</td>
+    <td>{{ inputs.phone_number|e }}</td>
+</tr>
+<tr>
+    <td>携帯電話番号</td>
+    <td>{{ inputs.mobile_phone_number|e }}</td>
+</tr>
+<tr>
+    <td>郵便番号</td>
+    <td>{{ inputs.post_code1|e }}-{{ inputs.post_code2|e }}</td>
+</tr>
+<tr>
+    <td>住所</td>
+    <td>
+        都道府県:
+        {{ inputs.prefecture|e }}
+        <br />
+        市区町村:
+        {{ inputs.address_city|e }}
+        <br />
+        その他:
+        {{ inputs.address_other|e }}
+    </td>
+</tr>
+<tr>
+    <td>所属部署</td>
+    <td>{{ inputs.section }}</td>
+</tr>
+</table>
+<form action="/register" method="POST">
+<input type="submit" value="戻る">
+</form>
+<input type="submit" value="登録">
 {% endblock %}
 
