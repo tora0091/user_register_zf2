@@ -40,7 +40,19 @@ class Messages
     const MOBILE_PHONE_NUMBER_NOT_DIGITS = "携帯電話番号は数値で入力してください";
     const MOBILE_PHONE_NUMBER_LENGTH = "携帯電話番号は11文字で入力してください";
     
+    // 郵便番号
+    const POST_CODE_IS_EMPTY = "郵便番号は必須です";
+    const POST_CODE_NOT_DIGITS = "郵便番号は数値で入力してください";
+    const POST_CODE_LENGTH = "郵便番号は7文字で入力してください";
+
     // 都道府県
     const PREFECTURE_IS_EMPTY = "都道府県は必須です";
     const PREFECTURE_INVAL_DATA = "都道府県に不正な値が設定されています";
+    
+    // 市区町村
+    const ADDRESS_CITY_IS_EMPTY = "市区町村は必須です";
+    const ADDRESS_CITY_LENGTH = "市区町村は40文字以内で入力してください";
+    
+    // 住所その他
+    const ADDRESS_CITY_OTHER = "その他は40文字以内で入力してください";
 }

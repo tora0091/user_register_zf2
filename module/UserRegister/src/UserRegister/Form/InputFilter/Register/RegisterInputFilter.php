@@ -78,6 +78,13 @@ class RegisterInputFilter extends AbstractInputFilter
             'filters' => [
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
+                [
+                    'name' => 'Callback',
+                    'options' => [
+                        'callback' => 'mb_convert_kana',
+                        'callback_params' => 'KVCA',
+                    ],
+                ],
             ],
             'validators' => [
                 [
@@ -111,6 +118,13 @@ class RegisterInputFilter extends AbstractInputFilter
             'filters' => [
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
+                [
+                    'name' => 'Callback',
+                    'options' => [
+                        'callback' => 'mb_convert_kana',
+                        'callback_params' => 'KVCA',
+                    ],
+                ],
             ],
             'validators' => [
                 [
@@ -260,6 +274,90 @@ class RegisterInputFilter extends AbstractInputFilter
             ],
         ]);
         
+        // 郵便番号１
+        $this->add([
+            'name' => 'post_code1',
+            'required' => true,
+            'filters' => [
+                ['name' => 'StripTags'],
+                ['name' => 'StringTrim'],
+            ],
+            'validators' => [
+                [
+                    'name' => 'NotEmpty',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'messages' => [
+                            NotEmpty::IS_EMPTY => Messages::POST_CODE_IS_EMPTY,
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'StringLength',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'min' => 3,
+                        'max' => 3,
+                        'message' => [
+                            StringLength::TOO_SHORT => Messages::POST_CODE_LENGTH,
+                            StringLength::TOO_LONG => Messages::POST_CODE_LENGTH,
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'Digits',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'messages' => [
+                            Digits::NOT_DIGITS => Messages::POST_CODE_NOT_DIGITS,
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+        
+        // 郵便番号２
+        $this->add([
+            'name' => 'post_code2',
+            'required' => true,
+            'filters' => [
+                ['name' => 'StripTags'],
+                ['name' => 'StringTrim'],
+            ],
+            'validators' => [
+                [
+                    'name' => 'NotEmpty',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'messages' => [
+                            NotEmpty::IS_EMPTY => Messages::POST_CODE_IS_EMPTY,
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'StringLength',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'min' => 4,
+                        'max' => 4,
+                        'message' => [
+                            StringLength::TOO_SHORT => Messages::POST_CODE_LENGTH,
+                            StringLength::TOO_LONG => Messages::POST_CODE_LENGTH,
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'Digits',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'messages' => [
+                            Digits::NOT_DIGITS => Messages::POST_CODE_NOT_DIGITS,
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+        
         // 都道府県
         $this->add([
             'name' => 'prefecture',
@@ -290,6 +388,87 @@ class RegisterInputFilter extends AbstractInputFilter
                         ],
                     ],
                 ],
+            ],
+        ]);
+        
+        // 市区町村
+        $this->add([
+            'name' => 'address_city',
+            'required' => true,
+            'filters' => [
+                ['name' => 'StripTags'],
+                ['name' => 'StringTrim'],
+                [
+                    'name' => 'Callback',
+                    'options' => [
+                        'callback' => 'mb_convert_kana',
+                        'callback_params' => 'KVCA',
+                    ],
+                ],
+            ],
+            'validators' => [
+                [
+                    'name' => 'NotEmpty',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'messages' => [
+                            NotEmpty::IS_EMPTY => Messages::ADDRESS_CITY_IS_EMPTY,
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'StringLength',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'min' => 1,
+                        'max' => 40,
+                        'message' => [
+                            StringLength::TOO_SHORT => Messages::ADDRESS_CITY_LENGTH,
+                            StringLength::TOO_LONG => Messages::ADDRESS_CITY_LENGTH,
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        // 住所その他
+        $this->add([
+            'name' => 'address_other',
+            'required' => false,
+            'filters' => [
+                ['name' => 'StripTags'],
+                ['name' => 'StringTrim'],
+                [
+                    'name' => 'Callback',
+                    'options' => [
+                        'callback' => 'mb_convert_kana',
+                        'callback_params' => 'KVCA',
+                    ],
+                ],
+            ],
+            'validators' => [
+                [
+                    'name' => 'StringLength',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'min' => 1,
+                        'max' => 40,
+                        'message' => [
+                            StringLength::TOO_SHORT => Messages::ADDRESS_CITY_OTHER,
+                            StringLength::TOO_LONG => Messages::ADDRESS_CITY_OTHER,
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        // 所属部署
+        $this->add([
+            'name' => 'section',
+            'required' => true,
+            'filters' => [
+                ['name' => 'StripTags'],
+                ['name' => 'StringTrim'],
             ],
         ]);
     }

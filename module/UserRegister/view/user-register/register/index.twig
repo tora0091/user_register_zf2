@@ -40,9 +40,14 @@
     </td>
 </tr>
 <tr>
-    <td>郵便番号</td>
+    <td>郵便番号<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
     <td><input type="text" name="post_code1" value="{{ inputs.post_code1 }}" size="3"/>-
-        <input type="text" name="post_code2" value="{{ inputs.post_code2 }}" size="4"/></td>
+        <input type="text" name="post_code2" value="{{ inputs.post_code2 }}" size="4"/>
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.post_code1)}}</font>
+        {% if errMsg.post_code1 is empty %}
+            <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.post_code2)}}</font>
+        {% endif %}
+    </td>
 </tr>
 <tr>
     <td>住所</td>
@@ -59,13 +64,17 @@
         <br />
         市区町村<span style="font-size: 10px; color: #ff0000;">[必須]</span>
         <input type="text" name="address_city" value="{{ inputs.address_city }}"/>
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.address_city)}}</font>
         <br />
         その他<input type="text" name="address_other" value="{{ inputs.address_other }}"/>
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.address_other)}}</font>
     </td>
 </tr>
 <tr>
     <td>所属部署<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
-    <td><input type="text" name="section" value="{{ inputs.section }}"/></td>
+    <td><input type="text" name="section" value="{{ inputs.section }}"/>
+        <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.section)}}</font>
+    </td>
 </tr>
 </table>
 <input type="submit" value="確認">
