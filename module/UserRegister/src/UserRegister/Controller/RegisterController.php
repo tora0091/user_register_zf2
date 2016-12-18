@@ -65,6 +65,7 @@ class RegisterController extends AbstractController
     public function confirmAction()
     {
         $view = new ViewModel();
+        $view->setVariable('inputs', $this->getSession()->inputs);
         $view->setTemplate(self::TEMPLATE_CONFIRM);
         return $view;
     }
