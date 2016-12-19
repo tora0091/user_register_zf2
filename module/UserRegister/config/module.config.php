@@ -80,6 +80,11 @@ return [
             'UserRegister\Controller\Search' => Controller\Factories\SearchControllerFactory::class,
         ],
     ],
+    'controller_plugins' => [
+        'invokables' => [
+            'token' => Controller\Plugin\TokenPlugin::class,
+        ],
+    ],
     'view_manager' => [
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
