@@ -15,9 +15,9 @@ class StringKatakana extends AbstractValidator
         self::INVALID_HANKAKU => Messages::INVALID_STRING_KATAKANA_HANKAKU,
     ];
 
-    protected $options = [
-        'isHankaku' => false,
-    ];
+//    protected $options = [
+//        'isHankaku' => false,
+//    ];
 
     public function isValid($value)
     {
@@ -30,10 +30,10 @@ class StringKatakana extends AbstractValidator
         }
         
         // 半角カタカナでなければエラーとする
-        if ($this->options['isHankaku'] && !preg_match("/^(?:\xEF\xBD[\xA1-\xBF]|\xEF\xBE[\x80-\x9F])+$/", $value)) {
-            $this->error(self::INVALID_HANKAKU);
-            return false;
-        }
+//        if ($this->options['isHankaku'] && !preg_match("/^(?:\xEF\xBD[\xA1-\xBF]|\xEF\xBE[\x80-\x9F])+$/", $value)) {
+//            $this->error(self::INVALID_HANKAKU);
+//            return false;
+//        }
 
         return true;
     }
