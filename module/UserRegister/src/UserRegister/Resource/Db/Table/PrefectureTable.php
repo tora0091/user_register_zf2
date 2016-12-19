@@ -8,13 +8,9 @@ class PrefectureTable extends AbstractTableGateway
 {
     const TABLE_NAME = 'm_prefecture';
 
-    /**
-     * @see \UserRegister\Resource\Db\Table\AbstractTableGateway::getTableName()
-     * @return string
-     */
-    public function getTableName()
+    public function __construct()
     {
-        return self::TABLE_NAME;
+        parent::__construct(self::TABLE_NAME);
     }
     
     /**

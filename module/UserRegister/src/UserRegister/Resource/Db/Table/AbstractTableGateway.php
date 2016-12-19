@@ -8,15 +8,15 @@ use Zend\Db\TableGateway\TableGateway;
 
 abstract class AbstractTableGateway
 {
+    private $tableName;
     protected $adapter = null;
     protected $tableGateway = null;
 
-    abstract function getTableName();
-
-    public function __construct()
+    public function __construct($tableName)
     {
+        $this->tableName = $tableName;
         $this->adapter = GlobalAdapterFeature::getStaticAdapter();
-        $this->tableGateway = new TableGateway($this->getTableName(), $this->getAdapter());
+        $this->tableGateway = new TableGateway($this->tableName, $this->getAdapter());
     }
     
     /**
@@ -38,7 +38,7 @@ abstract class AbstractTableGateway
     public function getTableGateway()
     {
         if (is_null($this->tableGateway)) {
-            $this->tableGateway = new TableGateway($this->getTableName(), $this->getAdapter());
+            $this->tableGateway = new TableGateway($this->tableName, $this->getAdapter());
         }
         return $this->tableGateway;
     }
