@@ -45,6 +45,13 @@ class RegisterInputFilter extends AbstractInputFilter
             'filters' => [
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
+                [
+                    'name' => 'Callback',
+                    'options' => [
+                        'callback' => 'mb_convert_kana',
+                        'callback_params' => 'KVA',
+                    ],
+                ],
             ],
             'validators' => [
                 [
@@ -82,7 +89,7 @@ class RegisterInputFilter extends AbstractInputFilter
                     'name' => 'Callback',
                     'options' => [
                         'callback' => 'mb_convert_kana',
-                        'callback_params' => 'KVCA',
+                        'callback_params' => 'KVA',
                     ],
                 ],
             ],
@@ -122,7 +129,7 @@ class RegisterInputFilter extends AbstractInputFilter
                     'name' => 'Callback',
                     'options' => [
                         'callback' => 'mb_convert_kana',
-                        'callback_params' => 'KVCA',
+                        'callback_params' => 'KVA',
                     ],
                 ],
             ],
@@ -148,6 +155,10 @@ class RegisterInputFilter extends AbstractInputFilter
                         ],
                     ],
                 ],
+                [
+                    'name' => 'UserRegister\Form\Validator\StringKatakana',
+                    'break_chain_on_failure' => true,
+                ],
             ],
         ]);
 
@@ -158,6 +169,13 @@ class RegisterInputFilter extends AbstractInputFilter
             'filters' => [
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
+                [
+                    'name' => 'Callback',
+                    'options' => [
+                        'callback' => 'mb_convert_kana',
+                        'callback_params' => 'KVA',
+                    ],
+                ],
             ],
             'validators' => [
                 [
@@ -180,6 +198,10 @@ class RegisterInputFilter extends AbstractInputFilter
                             StringLength::TOO_LONG => Messages::LAST_NAME_KANA_TOO_LONG,
                         ],
                     ],
+                ],
+                [
+                    'name' => 'UserRegister\Form\Validator\StringKatakana',
+                    'break_chain_on_failure' => true,
                 ],
             ],
         ]);
@@ -402,7 +424,7 @@ class RegisterInputFilter extends AbstractInputFilter
                     'name' => 'Callback',
                     'options' => [
                         'callback' => 'mb_convert_kana',
-                        'callback_params' => 'KVCA',
+                        'callback_params' => 'KVA',
                     ],
                 ],
             ],
@@ -442,7 +464,7 @@ class RegisterInputFilter extends AbstractInputFilter
                     'name' => 'Callback',
                     'options' => [
                         'callback' => 'mb_convert_kana',
-                        'callback_params' => 'KVCA',
+                        'callback_params' => 'KVA',
                     ],
                 ],
             ],
