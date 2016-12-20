@@ -17,7 +17,7 @@ class RegisterController extends AbstractController
     
     /**
      * 登録アクション
-     * @return ViewModel
+     * @return ViewModel $view
      */
     public function indexAction()
     {
@@ -34,6 +34,7 @@ class RegisterController extends AbstractController
             $session->offsetUnset('errMsg');
             $view->setVariable('errMsg', $errMsg);
         }
+        $this->token()->setToken($view, $session);
         
         $view->setVariable('inputs', $session->inputs);
         $view->setTemplate(self::TEMPLATE_INDEX);
@@ -42,11 +43,12 @@ class RegisterController extends AbstractController
     
     /**
      * バリデーション
-     * @return redirect url
+     * @return Response
      */
     public function validateAction()
     {
         $session = $this->getSession();
+        $this->token()->checkToken($this->getRequest(), $session);
         
         $input = $this->getInputFilter(new RegisterInputFilter());
         $session->inputs = $input->getValues();
@@ -61,12 +63,32 @@ class RegisterController extends AbstractController
 
     /**
      * 確認画面アクション
+     * @return ViewModel $view
      */
     public function confirmAction()
     {
         $view = new ViewModel();
+        $this->token()->setToken($view, $this->getSession());
         $view->setVariable('inputs', $this->getSession()->inputs);
         $view->setTemplate(self::TEMPLATE_CONFIRM);
         return $view;
+    }
+    
+    /**
+     * 更新処理
+     * @return Response
+     */
+    public function updateAction()
+    {
+        
+    }
+    
+    /**
+     * 完了画面アクション
+     * @return ViewModel $view
+     */
+    public function complete()
+    {
+        
     }
 }
