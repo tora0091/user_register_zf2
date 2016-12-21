@@ -28,6 +28,9 @@ class Module
 
         // session
         $this->bootstrapSession($e->getApplication()->getServiceManager());
+        
+        // exception handler
+        $eventManager->attach(MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'exceptionHandler']);
     }
 
     public function getConfig()
@@ -64,5 +67,23 @@ class Module
         $config = $e->getApplication()->getConfig();
         $adapter = new Adapter($config['db']);
         GlobalAdapterFeature::setStaticAdapter($adapter);
+    }
+
+    public function exceptionHandler(MvcEvent $e)
+    {
+        $exception = $e->getParam('exception');
+        if ($e->isError()) {
+            if ($exception instanceof \UserRegister\Common\Exception\ApplicationException) {
+                
+            } elseif ($exception instanceof \UserRegister\Common\Exception\DatabaseException) {
+                
+            } elseif ($exception instanceof \UserRegister\Common\Exception\FileNotFoundException) {
+                
+            } elseif ($exception instanceof \UserRegister\Common\Exception\NotTokenException) {
+                
+            } else {
+                
+            }
+        }
     }
 }
