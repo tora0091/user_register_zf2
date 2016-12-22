@@ -492,6 +492,26 @@ class RegisterInputFilter extends AbstractInputFilter
                 ['name' => 'StripTags'],
                 ['name' => 'StringTrim'],
             ],
-        ]);
+           'validators' => [
+                [
+                    'name' => 'NotEmpty',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'messages' => [
+                            NotEmpty::IS_EMPTY => Messages::SECTION_IS_EMPTY,
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'Digits',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'messages' => [
+                            Digits::NOT_DIGITS => Messages::SECTION_IS_EMPTY,
+                        ],
+                    ],
+                ],
+            ],
+         ]);
     }
 }

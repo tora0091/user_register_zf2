@@ -41,8 +41,8 @@
 </tr>
 <tr>
     <td>郵便番号<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
-    <td><input type="text" name="post_code1" value="{{ inputs.post_code1 }}" size="3"/>-
-        <input type="text" name="post_code2" value="{{ inputs.post_code2 }}" size="4"/>
+    <td><input type="text" name="post_code1" value="{{ inputs.post_code1 }}" size="3" maxlength="3" />-
+        <input type="text" name="post_code2" value="{{ inputs.post_code2 }}" size="4" maxlength="4" />
         <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.post_code1)}}</font>
         {% if errMsg.post_code1 is empty %}
             <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.post_code2)}}</font>
@@ -72,7 +72,13 @@
 </tr>
 <tr>
     <td>所属部署<span style="font-size: 10px; color: #ff0000;">[必須]</span></td>
-    <td><input type="text" name="section" value="{{ inputs.section }}"/>
+    <td>
+        <select name="section">
+            <option value="">選択してください</option>
+        {% for section in sectionList %}
+            <option value="{{ section.id }}"{% if inputs.section == section.id %} selected{% endif %}>{{ section.id }}:{{ section.name }}</option>
+        {% endfor %}
+        </select>
         <font style="color: #ff0000">{{ form.showErrorMessage(errMsg.section)}}</font>
     </td>
 </tr>

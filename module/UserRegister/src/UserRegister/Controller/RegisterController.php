@@ -25,8 +25,11 @@ class RegisterController extends AbstractController
         
         /** @var \UserRegister\Service\RegisterServicve $registerService */
         $registerService = $this->getService('RegisterService');
-        $prefectureList = $registerService->getPrefecture();
-        $view->setVariable('prefectureList', $prefectureList);
+        $view->setVariable('prefectureList', $registerService->getPrefecture());
+
+        /** @var \UserRegister\Service\SectionService $sectionService */
+        $sectionService = $this->getService('SectionService');
+        $view->setVariable('sectionList', $sectionService->getSection());
 
         $session = $this->getSession();
         if (!empty($session->errMsg)) {
@@ -78,8 +81,12 @@ class RegisterController extends AbstractController
      * 更新処理
      * @return Response
      */
-    public function updateAction()
+    public function registerAction()
     {
+        $session = $this->getSession();
+        $this->token()->checkToken($this->getRequest(), $session);
+
+
         
     }
     
@@ -87,7 +94,7 @@ class RegisterController extends AbstractController
      * 完了画面アクション
      * @return ViewModel $view
      */
-    public function complete()
+    public function completeAction()
     {
         
     }

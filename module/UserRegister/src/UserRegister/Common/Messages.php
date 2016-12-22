@@ -56,6 +56,9 @@ class Messages
     // 住所その他
     const ADDRESS_CITY_OTHER = "その他は40文字以内で入力してください";
     
+    // 所属部署
+    const SECTION_IS_EMPTY = "所属部署は必須です";
+    
     // バリデータ関連
     const INVALID_STRING_KATAKANA_ZENKAKU = "全角カタカナで入力してください";
     const INVALID_STRING_KATAKANA_HANKAKU = "半角カタカナで入力してください";

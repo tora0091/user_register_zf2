@@ -76,7 +76,7 @@ class Module
             if ($exception instanceof \UserRegister\Common\Exception\ApplicationException) {
                 
             } elseif ($exception instanceof \UserRegister\Common\Exception\DatabaseException) {
-                
+
             } elseif ($exception instanceof \UserRegister\Common\Exception\FileNotFoundException) {
                 
             } elseif ($exception instanceof \UserRegister\Common\Exception\NotTokenException) {
