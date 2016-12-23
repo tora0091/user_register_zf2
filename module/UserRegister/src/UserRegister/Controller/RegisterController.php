@@ -3,6 +3,7 @@
 namespace UserRegister\Controller;
 
 use UserRegister\Form\InputFilter\Register\RegisterInputFilter;
+use UserRegister\Common\Exception\FileNotFoundException;
 use Zend\View\Model\ViewModel;
 
 class RegisterController extends AbstractController
@@ -70,6 +71,9 @@ class RegisterController extends AbstractController
         $this->token()->setToken($view, $this->getSession());
         
         $inputs = $this->getSession()->inputs;
+        if (count($inputs) <= 0) {
+            throw new FileNotFoundException();
+        }
         $inputs['prefectureText'] = $this->getCodeText($inputs['prefecture_id'], $this->getPrefectureList());
         $inputs['sectionText'] = $this->getCodeText($inputs['section_id'], $this->getSectionList());
         $view->setVariable('inputs', $inputs);
@@ -88,7 +92,6 @@ class RegisterController extends AbstractController
 
         $registerService = $this->getService('RegisterService');
         $registerService->insert($session->inputs);
-        
         $this->clearSession();
 
         return $this->redirect()->toUrl(self::URL_COMPLETE_ACTION);

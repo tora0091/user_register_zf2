@@ -30,8 +30,13 @@ class RegisterService extends AbstractService
      * @param array $data 登録情報
      * @return integer 登録件数
      */
-    public function insert($data)
+    public function insert(array $data = null)
     {
+        // 必須項目のチェック
+        if ($data === null || strlen($data['number']) <= 0) {
+            throw new DatabaseException();
+        }
+        
         $data['post_code'] = $data['post_code1'] .$data['post_code2'];
         unset($data['post_code1']);
         unset($data['post_code2']);
