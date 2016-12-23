@@ -31,6 +31,13 @@ class RegisterService extends AbstractService
      */
     public function insert($data)
     {
+        $data['post_code'] = $data['post_code1'] .$data['post_code2'];
+        unset($data['post_code1']);
+        unset($data['post_code2']);
+        $data['status'] = 1;
+        $now = date('Y-m-d H:i:s');
+        $data['create_date'] = $now;
+        $data['update_date'] = $now;
         return $this->getTable('UserTable')->insert($data);
     }
 }

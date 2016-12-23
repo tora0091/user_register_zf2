@@ -382,7 +382,7 @@ class RegisterInputFilter extends AbstractInputFilter
         
         // 都道府県
         $this->add([
-            'name' => 'prefecture',
+            'name' => 'prefecture_id',
             'required' => true,
             'filters' => [
                 ['name' => 'StripTags'],
@@ -486,7 +486,7 @@ class RegisterInputFilter extends AbstractInputFilter
 
         // 所属部署
         $this->add([
-            'name' => 'section',
+            'name' => 'section_id',
             'required' => true,
             'filters' => [
                 ['name' => 'StripTags'],

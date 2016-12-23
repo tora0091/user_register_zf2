@@ -10,6 +10,7 @@ class RegisterController extends AbstractController
     /** url path */
     const URL_INDEX_ACTION = '/register';
     const URL_CONFIRM_ACTION = '/register/confirm';
+    const URL_COMPLETE_ACTION = '/register/complete';
 
     /** template name */
     const TEMPLATE_INDEX = 'user-register/register/index';
@@ -68,8 +69,8 @@ class RegisterController extends AbstractController
         $this->token()->setToken($view, $this->getSession());
         
         $inputs = $this->getSession()->inputs;
-        $inputs['prefectureText'] = $this->getCodeText($inputs['prefecture'], $this->getPrefectureList());
-        $inputs['sectionText'] = $this->getCodeText($inputs['section'], $this->getSectionList());
+        $inputs['prefectureText'] = $this->getCodeText($inputs['prefecture_id'], $this->getPrefectureList());
+        $inputs['sectionText'] = $this->getCodeText($inputs['section_id'], $this->getSectionList());
         $view->setVariable('inputs', $inputs);
         $view->setTemplate(self::TEMPLATE_CONFIRM);
         return $view;
@@ -84,8 +85,10 @@ class RegisterController extends AbstractController
         $session = $this->getSession();
         $this->token()->checkToken($this->getRequest(), $session);
 
+        $registerService = $this->getService('RegisterService');
+        $registerService->insert($session->inputs);
 
-        
+        return $this->redirect()->toUrl(self::URL_COMPLETE_ACTION);
     }
     
     /**
