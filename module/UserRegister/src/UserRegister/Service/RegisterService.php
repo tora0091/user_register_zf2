@@ -3,6 +3,7 @@
 namespace UserRegister\Service;
 
 use UserRegister\Service\AbstractService;
+use UserRegister\Common\Exception\DatabaseException;
 
 class RegisterService extends AbstractService
 {
@@ -38,6 +39,16 @@ class RegisterService extends AbstractService
         $now = date('Y-m-d H:i:s');
         $data['create_date'] = $now;
         $data['update_date'] = $now;
-        return $this->getTable('UserTable')->insert($data);
+        
+        $res = null;
+        try {
+            $this->begin();
+            $res = $this->getTable('UserTable')->insert($data);
+            $this->commit();
+        } catch (Exception $ex) {
+            $this->rollback();
+            throw new DatabaseException();
+        }
+        return $res;
     }
 }

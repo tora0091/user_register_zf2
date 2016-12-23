@@ -3,6 +3,8 @@
 namespace UserRegister\Service;
 
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\Db\Adapter\Adapter;
+use Zend\Db\TableGateway\Feature\GlobalAdapterFeature;
 
 abstract class AbstractService
 {
@@ -11,6 +13,9 @@ abstract class AbstractService
     
     /** @var $serviceLocator */
     protected $serviceLocator;
+
+    /** @var \Zend\Db\Adapter\Adapter $adapter */
+    private $adapter;
 
     /**
      * Construt
@@ -32,5 +37,50 @@ abstract class AbstractService
             $name = self::TABLE_PATH . $name;
         }
         return $this->serviceLocator->get($name);
+    }
+
+    /**
+     * DB Adapter
+     * @return Adapter
+     */
+    private function getAdapter()
+    {
+        if ($this->adapter == null) {
+            $this->adapter = GlobalAdapterFeature::getStaticAdapter();
+        }
+        return $this->adapter;
+    }
+
+    /**
+     * db connection
+     * @return ConnectionInterface
+     */
+    public function connection()
+    {
+        return $this->getAdapter()->getDriver()->getConnection();
+    }
+    
+    /**
+     * begin
+     */
+    public function begin()
+    {
+        $this->connection()->beginTransaction();
+    }
+
+    /**
+     * commit
+     */
+    public function commit()
+    {
+        $this->connection()->commit();
+    }
+
+    /**
+     * rollback
+     */
+    public function rollback()
+    {
+        $this->connection()->rollback();
     }
 }

@@ -15,6 +15,7 @@ class RegisterController extends AbstractController
     /** template name */
     const TEMPLATE_INDEX = 'user-register/register/index';
     const TEMPLATE_CONFIRM = 'user-register/register/confirm';
+    const TEMPLATE_COMPLETE = 'user-register/register/complete';
     
     /**
      * 登録アクション
@@ -87,6 +88,8 @@ class RegisterController extends AbstractController
 
         $registerService = $this->getService('RegisterService');
         $registerService->insert($session->inputs);
+        
+        $this->clearSession();
 
         return $this->redirect()->toUrl(self::URL_COMPLETE_ACTION);
     }
@@ -97,7 +100,9 @@ class RegisterController extends AbstractController
      */
     public function completeAction()
     {
-        
+        $view = new ViewModel();
+        $view->setTemplate(self::TEMPLATE_COMPLETE);
+        return $view;
     }
     
     /**

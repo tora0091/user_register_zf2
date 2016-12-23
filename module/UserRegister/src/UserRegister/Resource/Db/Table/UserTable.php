@@ -20,11 +20,7 @@ class UserTable extends AbstractTableGateway
      */
     public function insert($data)
     {
-        try {
-            return $this->getTableGateway()->insert($data);
-        } catch (Exception $ex) {
-            throw new DatabaseException();
-        }
+        return $this->getTableGateway()->insert($data);
     }
 }
 /*
