@@ -22,14 +22,8 @@ class RegisterController extends AbstractController
     public function indexAction()
     {
         $view = new ViewModel();
-        
-        /** @var \UserRegister\Service\RegisterServicve $registerService */
-        $registerService = $this->getService('RegisterService');
-        $view->setVariable('prefectureList', $registerService->getPrefecture());
-
-        /** @var \UserRegister\Service\SectionService $sectionService */
-        $sectionService = $this->getService('SectionService');
-        $view->setVariable('sectionList', $sectionService->getSection());
+        $view->setVariable('prefectureList', $this->getPrefectureList());
+        $view->setVariable('sectionList', $this->getSectionList());
 
         $session = $this->getSession();
         if (!empty($session->errMsg)) {
@@ -72,7 +66,11 @@ class RegisterController extends AbstractController
     {
         $view = new ViewModel();
         $this->token()->setToken($view, $this->getSession());
-        $view->setVariable('inputs', $this->getSession()->inputs);
+        
+        $inputs = $this->getSession()->inputs;
+        $inputs['prefectureText'] = $this->getCodeText($inputs['prefecture'], $this->getPrefectureList());
+        $inputs['sectionText'] = $this->getCodeText($inputs['section'], $this->getSectionList());
+        $view->setVariable('inputs', $inputs);
         $view->setTemplate(self::TEMPLATE_CONFIRM);
         return $view;
     }
@@ -97,5 +95,21 @@ class RegisterController extends AbstractController
     public function completeAction()
     {
         
+    }
+    
+    /**
+     * リストから対象のテキストを取得
+     * @param string $code 取得するID
+     * @param array $lists 対象リスト
+     * @return string 対象テキスト
+     */
+    private function getCodeText($code, $lists)
+    {
+        foreach ($lists as $list) {
+            if ((int) $list['id'] === (int) $code) {
+                return $list['name'];
+            }
+        }
+        return "";
     }
 }

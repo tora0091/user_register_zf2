@@ -13,14 +13,19 @@ abstract class AbstractController extends AbstractActionController
 {
     use ContainerTrait;
 
-    /** @var service path */
     const SERVICE_PATH = 'UserRegister\Service\\';
     
-    /** @var $serviceLocator */
+    /** @var \Zend\ServiceManager\ServiceLocatorInterface $serviceLocator */
     protected $serviceLocator;
 
-    /** @var $adapter */
+    /** @var \Zend\Db\Adapter\Adapter $adapter */
     private $adapter;
+
+    /** @var $prefectureList */
+    private $prefectureList;
+
+    /** @var $sectionList */
+    private $sectionList;
 
     /**
      * Construt
@@ -156,5 +161,29 @@ abstract class AbstractController extends AbstractActionController
     public function rollback()
     {
         $this->connection()->rollback();
+    }
+
+    /**
+     * 都道府県リスト取得
+     * @return array 都道府県リスト
+     */
+    public function getPrefectureList()
+    {
+        if ($this->prefectureList === null) {
+            $this->prefectureList = $this->getService('RegisterService')->getPrefecture();
+        }
+        return $this->prefectureList;
+    }
+    
+    /**
+     * 部署名リスト取得
+     * @return array 部署名リスト
+     */
+    public function getSectionList()
+    {
+        if ($this->sectionList === null) {
+            $this->sectionList = $this->getService('SectionService')->getSection();
+        }
+        return $this->sectionList;
     }
 }

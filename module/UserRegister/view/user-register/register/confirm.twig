@@ -34,7 +34,7 @@
     <td>住所</td>
     <td>
         都道府県:
-        {{ inputs.prefecture|e }}
+        {{ inputs.prefectureText|e }}
         <br />
         市区町村:
         {{ inputs.address_city|e }}
@@ -45,7 +45,7 @@
 </tr>
 <tr>
     <td>所属部署</td>
-    <td>{{ inputs.section }}</td>
+    <td>{{ inputs.sectionText|e }}</td>
 </tr>
 </table>
 <form action="/register" method="POST">
