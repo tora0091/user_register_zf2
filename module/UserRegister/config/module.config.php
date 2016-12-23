@@ -49,6 +49,7 @@ return [
             // Table
             'UserRegister\Resource\Db\Table\PrefectureTable' => Resource\Db\Table\PrefectureTable::class,
             'UserRegister\Resource\Db\Table\SectionTable' => Resource\Db\Table\SectionTable::class,
+            'UserRegister\Resource\Db\Table\UserTable' => Resource\Db\Table\UserTable::class,
         ],
         'abstract_factories' => [
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -60,7 +61,6 @@ return [
             'ViewHelperManager' => 'Zend\Mvc\Service\ViewHelperManagerFactory',
             // Service
             'UserRegister\Service\RegisterService' => Service\Factories\RegisterServiceFactory::class,
-            'UserRegister\Service\SectionService' => Service\Factories\SectionServiceFactory::class,
         ],
     ],
     'translator' => [

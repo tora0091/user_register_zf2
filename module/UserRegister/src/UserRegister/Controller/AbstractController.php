@@ -182,7 +182,7 @@ abstract class AbstractController extends AbstractActionController
     public function getSectionList()
     {
         if ($this->sectionList === null) {
-            $this->sectionList = $this->getService('SectionService')->getSection();
+            $this->sectionList = $this->getService('RegisterService')->getSection();
         }
         return $this->sectionList;
     }
