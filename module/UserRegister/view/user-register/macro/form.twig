@@ -1,5 +1,13 @@
 {% macro showErrorMessage(messages) %}
     {% for msg in messages %}
-        {{ msg }}
+        {% if msg is iterable %}
+            {% for m in msg %}
+                {% if loop.index == 1 %}
+                    {{ m }}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {{ msg }}
+        {% endif %}
     {% endfor %}
 {% endmacro %}
