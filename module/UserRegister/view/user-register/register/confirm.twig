@@ -1,37 +1,33 @@
+{% extends "layout/layout.twig" %}
 {% block container %}
-<h2>顧客登録確認</h2>
-
-<table>
+<h2 class="title">顧客登録確認</h2>
+<table class="regster-form-table">
 <tr>
-    <td>社員番号</td>
+    <th>社員番号</th>
     <td>{{ inputs.number|e }}</td>
 </tr>
 <tr>
-    <td>名前</td>
-    <td>姓&nbsp;{{ inputs.family_name|e }}
-        名&nbsp;{{ inputs.last_name|e }}
-    </td>
+    <th>名前</th>
+    <td>{{ inputs.family_name|e }}　{{ inputs.last_name|e }}</td>
 </tr>
 <tr>
-    <td>名前（カナ）</td>
-    <td>セイ&nbsp;{{ inputs.family_name_kana|e }}
-        メイ&nbsp;{{ inputs.last_name_kana|e }}
-    </td>
+    <th>名前（カナ）</th>
+    <td>{{ inputs.family_name_kana|e }}　{{ inputs.last_name_kana|e }}</td>
 </tr>
 <tr>
-    <td>電話番号</td>
+    <th>電話番号</th>
     <td>{{ inputs.phone_number|e }}</td>
 </tr>
 <tr>
-    <td>携帯電話番号</td>
+    <th>携帯電話番号</th>
     <td>{{ inputs.mobile_phone_number|e }}</td>
 </tr>
 <tr>
-    <td>郵便番号</td>
+    <th>郵便番号</th>
     <td>{{ inputs.post_code1|e }}-{{ inputs.post_code2|e }}</td>
 </tr>
 <tr>
-    <td>住所</td>
+    <th>住所</th>
     <td>
         都道府県:
         {{ inputs.prefectureText|e }}
@@ -44,16 +40,25 @@
     </td>
 </tr>
 <tr>
-    <td>所属部署</td>
+    <th>所属部署</th>
     <td>{{ inputs.sectionText|e }}</td>
 </tr>
 </table>
-<form action="/register" method="POST">
-<input type="submit" value="戻る">
-</form>
-<form action="/register/register" method="POST">
-<input type="hidden" name="token" value="{{ token }}">
-<input type="submit" value="登録">
-</form>
+
+<br />
+<table>
+  <tr>
+    <td>
+      <form action="/register" method="POST">
+        <input type="submit" value="戻る" class="botton-form">
+      </form>
+    </td><td>
+      <form action="/register/register" method="POST">
+        <input type="hidden" name="token" value="{{ token }}">
+        <input type="submit" value="登録" class="botton-form">
+      </form>
+    </td>
+  </tr>
+</table>
 {% endblock %}
 
