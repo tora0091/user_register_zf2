@@ -104,7 +104,8 @@ class Module
                 $response->setStatusCode(404);
                 $result->setTemplate('error/404');
             } else {
-//                var_dump($exception->getMessage());
+                $response->setStatusCode(500);
+                $result->setTemplate('error/index');
             }
         }
     }
