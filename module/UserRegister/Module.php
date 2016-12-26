@@ -9,8 +9,11 @@
 
 namespace UserRegister;
 
+use Zend\Mvc\Application;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\View\Model\ViewModel;
+use Zend\Http\PhpEnvironment\Response;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\TableGateway\Feature\GlobalAdapterFeature;
@@ -71,18 +74,37 @@ class Module
 
     public function exceptionHandler(MvcEvent $e)
     {
+        $error = $e->getError();
+        if ($error !== Application::ERROR_EXCEPTION) {
+            return;
+        }
+
+        $result = $e->getResult();
+        if (!$result instanceof ViewModel) {
+            return;
+        }
+
+        $response = $e->getResponse();
+        if (!$response instanceof Response) {
+            return;
+        }
+
         $exception = $e->getParam('exception');
         if ($e->isError()) {
             if ($exception instanceof \UserRegister\Common\Exception\ApplicationException) {
-                
+                $response->setStatusCode(500);
+                $result->setTemplate('error/index');
             } elseif ($exception instanceof \UserRegister\Common\Exception\DatabaseException) {
-
+                $response->setStatusCode(500);
+                $result->setTemplate('error/index');
             } elseif ($exception instanceof \UserRegister\Common\Exception\FileNotFoundException) {
-                
+                $response->setStatusCode(404);
+                $result->setTemplate('error/404');
             } elseif ($exception instanceof \UserRegister\Common\Exception\NotTokenException) {
-                
+                $response->setStatusCode(404);
+                $result->setTemplate('error/404');
             } else {
-                
+//                var_dump($exception->getMessage());
             }
         }
     }
