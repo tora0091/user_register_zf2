@@ -6,8 +6,6 @@ use UserRegister\Common\ContainerTrait;
 use Zend\InputFilter\InputFilter;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Db\Adapter\Adapter;
-use Zend\Db\TableGateway\Feature\GlobalAdapterFeature;
 
 abstract class AbstractController extends AbstractActionController
 {
@@ -17,9 +15,6 @@ abstract class AbstractController extends AbstractActionController
     
     /** @var \Zend\ServiceManager\ServiceLocatorInterface $serviceLocator */
     protected $serviceLocator;
-
-    /** @var \Zend\Db\Adapter\Adapter $adapter */
-    private $adapter;
 
     /** @var $prefectureList */
     private $prefectureList;
@@ -118,51 +113,6 @@ abstract class AbstractController extends AbstractActionController
         $this->clearContainer();
     }
     
-    /**
-     * DB Adapter
-     * @return Adapter
-     */
-    private function getAdapter()
-    {
-        if ($this->adapter == null) {
-            $this->adapter = GlobalAdapterFeature::getStaticAdapter();
-        }
-        return $this->adapter;
-    }
-
-    /**
-     * db connection
-     * @return ConnectionInterface
-     */
-    public function connection()
-    {
-        return $this->getAdapter()->getDriver()->getConnection();
-    }
-    
-    /**
-     * begin
-     */
-    public function begin()
-    {
-        $this->connection()->beginTransaction();
-    }
-
-    /**
-     * commit
-     */
-    public function commit()
-    {
-        $this->connection()->commit();
-    }
-
-    /**
-     * rollback
-     */
-    public function rollback()
-    {
-        $this->connection()->rollback();
-    }
-
     /**
      * 都道府県リスト取得
      * @return array 都道府県リスト
