@@ -2,12 +2,15 @@
 
 namespace UserRegister\Service;
 
+use UserRegister\Common\LoggingTrait;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\TableGateway\Feature\GlobalAdapterFeature;
 
 abstract class AbstractService
 {
+    use LoggingTrait;
+    
     /** @var table path */
     const TABLE_PATH = 'UserRegister\Resource\Db\Table\\';
     
@@ -25,6 +28,15 @@ abstract class AbstractService
     {
         $this->serviceLocator = $serviceLocator;
     }
+
+    /**
+     * getServiceLocator
+     * @return \Zend\ServiceManager\ServiceLocatorInterface
+     */
+    public function getServiceLocator()
+    {
+        return $this->serviceLocator;
+    }
     
     /**
      * テーブルオブジェクトを返す
@@ -36,7 +48,7 @@ abstract class AbstractService
         if (!strpos(self::TABLE_PATH, $name)) {
             $name = self::TABLE_PATH . $name;
         }
-        return $this->serviceLocator->get($name);
+        return $this->getServiceLocator()->get($name);
     }
 
     /**

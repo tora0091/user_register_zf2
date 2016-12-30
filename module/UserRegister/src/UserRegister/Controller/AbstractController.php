@@ -3,6 +3,7 @@
 namespace UserRegister\Controller;
 
 use UserRegister\Common\ContainerTrait;
+use UserRegister\Common\LoggingTrait;
 use Zend\InputFilter\InputFilter;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -10,6 +11,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 abstract class AbstractController extends AbstractActionController
 {
     use ContainerTrait;
+    use LoggingTrait;
 
     const SERVICE_PATH = 'UserRegister\Service\\';
     
@@ -21,7 +23,7 @@ abstract class AbstractController extends AbstractActionController
 
     /** @var $sectionList */
     private $sectionList;
-
+    
     /**
      * Construt
      * @param ServiceLocatorInterface $serviceLocator
@@ -32,6 +34,15 @@ abstract class AbstractController extends AbstractActionController
     }
 
     /**
+     * getServiceLocator
+     * @return \Zend\ServiceManager\ServiceLocatorInterface
+     */
+    public function getServiceLocator()
+    {
+        return $this->serviceLocator;
+    }
+    
+    /**
      * サービス取得
      * @param string $name サービス名
      * @return object
@@ -41,7 +52,7 @@ abstract class AbstractController extends AbstractActionController
         if (!strpos(self::SERVICE_PATH, $name)) {
             $name = self::SERVICE_PATH . $name;
         }
-        return $this->serviceLocator->get($name);
+        return $this->getServiceLocator()->get($name);
     }
     
     /**
@@ -51,7 +62,7 @@ abstract class AbstractController extends AbstractActionController
      */
     public function getConfig($name = 'default')
     {
-        $config = $this->serviceLocator->get('config');
+        $config = $this->getServiceLocator()->get('config');
         if (isset($config[$name])) {
             return $config[$name];
         }
