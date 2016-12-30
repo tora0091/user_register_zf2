@@ -4,7 +4,7 @@
 
 {% block container %}
 <h2 class="title">顧客登録</h2>
-<form action="/register/validate" method="POST">
+<form action="{{ basepath() }}/register/validate" method="POST">
 <table class="regster-form-table">
 <tr>
     <th>社員番号<span class="required">必須</span></th>

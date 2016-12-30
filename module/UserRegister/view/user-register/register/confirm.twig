@@ -51,11 +51,11 @@
 <table>
   <tr>
     <td>
-      <form action="/register" method="POST">
+      <form action="{{ basepath() }}/register" method="POST">
         <button type="submit" name="back-button" class="button-form">戻る</button>
       </form>
     </td><td>
-      <form action="/register/register" method="POST">
+      <form action="{{ basepath() }}/register/register" method="POST">
         <input type="hidden" name="token" value="{{ token }}">
         <button type="submit" name="button-register" class="button-form">登録</button>
       </form>
