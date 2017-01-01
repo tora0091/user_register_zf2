@@ -1,22 +1,25 @@
 {
-    "name": "zendframework/skeleton-application",
-    "description": "Skeleton Application for ZF2",
+    "name": "user_register",
+    "description": "User Register Application for zf2",
     "license": "BSD-3-Clause",
-    "keywords": [
-        "framework",
-        "zf2"
-    ],
+    "keywords": [],
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.5",
         "zendframework/zendframework": "~2.5",
         "zf-commons/zfc-twig": "dev-master"
     },
+    "autoload": {
+        "psr-4": {
+            "UserRegister\\": "module/UserRegister/src/"
+        }
+    },
     "require-dev": {
         "phpunit/phpunit": "4.8.30",
         "phake/phake": "v2.3.0",
         "phpmd/phpmd": "1.4.1",
         "sebastian/phpcpd": "2.0.4",
-        "pdepend/pdepend": "2.2.6"
+        "pdepend/pdepend": "2.2.6",
+        "squizlabs/php_codesniffer": "2.7.0"
     }
 }
