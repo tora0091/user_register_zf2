@@ -103,9 +103,9 @@ abstract class AbstractController extends AbstractActionController
      * セッション削除
      * @param string $name セッション名
      */
-    public function clearSession($name)
+    public function clearSession()
     {
-        $this->clearContainer($name);
+        $this->clearContainer();
     }
     
     /**
