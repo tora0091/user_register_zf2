@@ -57,6 +57,7 @@ return [
         ],
         'factories' => [
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
+            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
             'SessionManager' => 'Zend\Session\Service\SessionManagerFactory',
             'ViewHelperManager' => 'Zend\Mvc\Service\ViewHelperManagerFactory',
             // Service

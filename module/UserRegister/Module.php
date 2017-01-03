@@ -27,7 +27,7 @@ class Module
         $moduleRouteListener->attach($eventManager);
 
         // database
-        $this->createDbAdapter($e);
+        $this->createDbAdapter($e->getApplication()->getServiceManager());
 
         // session
         $this->bootstrapSession($e->getApplication()->getServiceManager());
@@ -65,10 +65,9 @@ class Module
         $sessionManager->start();
     }
 
-    protected function createDbAdapter(MvcEvent $e)
+    protected function createDbAdapter(ServiceManager $serviceManager)
     {
-        $config = $e->getApplication()->getConfig();
-        $adapter = new Adapter($config['db']);
+        $adapter = $serviceManager->get('Zend\Db\Adapter\Adapter');
         GlobalAdapterFeature::setStaticAdapter($adapter);
     }
 
