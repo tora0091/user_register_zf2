@@ -43,7 +43,4 @@ return [
             ],
         ],
     ],
-    'default' => [
-        'basename' => 'http://example.production.zf2',
-    ],
 ];
