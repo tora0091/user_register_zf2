@@ -5,6 +5,7 @@ namespace UserRegisterTest\Form\InputFilter\Register;
 use UserRegister\Common\Messages;
 use UserRegister\Form\InputFilter\Register\RegisterInputFilter;
 use UserRegister\Form\Validator\StringKatakana;
+use Zend\Validator\Between;
 use Zend\Validator\Digits;
 use Zend\Validator\NotEmpty;
 use Zend\Validator\StringLength;
@@ -286,6 +287,9 @@ class RegisterInputFilterTest extends \PHPUnit_Framework_TestCase
         }
     }
     
+    /**
+     * 電話番号
+     */
     public function testPhoneNumber()
     {
         // 桁数チェック 9桁
@@ -327,6 +331,9 @@ class RegisterInputFilterTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($input->isValid());
     }
 
+    /**
+     * 携帯電話番号
+     */
     public function testMobliePhoneNumber()
     {
         // 桁数チェック 10桁
@@ -367,7 +374,10 @@ class RegisterInputFilterTest extends \PHPUnit_Framework_TestCase
         $input = $this->createInputFilter(['phone_number' => '0311112222', 'mobile_phone_number' => '']);
         $this->assertTrue($input->isValid());
     }
-    
+
+    /**
+     * 電話番号または検体電話番号が必須
+     */    
     public function testPhoneNumberOrMobilePhoneNumber()
     {
         // 両方設定されている場合
@@ -391,6 +401,210 @@ class RegisterInputFilterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($message['phone_number'], [NotEmpty::IS_EMPTY => Messages::PHONE_NUMBER_IS_EMPTY]);
         $this->assertThat($message, $this->arrayHasKey('mobile_phone_number'));
         $this->assertEquals($message['mobile_phone_number'], [NotEmpty::IS_EMPTY => Messages::MOBILE_PHONE_NUMBER_IS_EMPTY]);
+    }
+
+    /**
+     * 郵便番号1の検証
+     */    
+    public function testPostCode1()
+    {
+        // 必須チェック
+        $input = $this->createInputFilter(['post_code1' => '']);
+        $this->assertFalse($input->isValid());
+
+        $message = $input->getMessages();
+        $this->assertThat($message, $this->arrayHasKey('post_code1'));
+        $this->assertEquals($message['post_code1'], [NotEmpty::IS_EMPTY => Messages::POST_CODE_IS_EMPTY]);
+
+        // 文字列長チェック 2桁
+        $input = $this->createInputFilter(['post_code1' => '12']);
+        $this->assertFalse($input->isValid());
+
+        $message = $input->getMessages();
+        $this->assertThat($message, $this->arrayHasKey('post_code1'));
+        $this->assertEquals($message['post_code1'][StringLength::TOO_SHORT][StringLength::TOO_SHORT], Messages::POST_CODE_LENGTH);
+
+        // 文字列長チェック 4桁
+        $input = $this->createInputFilter(['post_code1' => '1234']);
+        $this->assertFalse($input->isValid());
+
+        $message = $input->getMessages();
+        $this->assertThat($message, $this->arrayHasKey('post_code1'));
+        $this->assertEquals($message['post_code1'][StringLength::TOO_LONG][StringLength::TOO_LONG], Messages::POST_CODE_LENGTH);
+
+        // 数値以外
+        $ngList = [
+            'aaa',
+            'ａａａ',
+            'あああ',
+            'アアア',
+            'ｱｱｱ',
+            '１１１',
+        ];
+        foreach ($ngList as $number) {
+            $input = $this->createInputFilter(['post_code1' => $number]);
+            $this->assertFalse($input->isValid());
+
+            $message = $input->getMessages();
+            $this->assertThat($message, $this->arrayHasKey('post_code1'));
+            $this->assertEquals($message['post_code1'], [Digits::NOT_DIGITS => Messages::POST_CODE_NOT_DIGITS]);
+        }
+    }
+
+    /**
+     * 郵便番号2の検証
+     */    
+    public function testPostCode2()
+    {
+        // 必須チェック
+        $input = $this->createInputFilter(['post_code2' => '']);
+        $this->assertFalse($input->isValid());
+
+        $message = $input->getMessages();
+        $this->assertThat($message, $this->arrayHasKey('post_code2'));
+        $this->assertEquals($message['post_code2'], [NotEmpty::IS_EMPTY => Messages::POST_CODE_IS_EMPTY]);
+
+        // 文字列長チェック 3桁
+        $input = $this->createInputFilter(['post_code2' => '123']);
+        $this->assertFalse($input->isValid());
+
+        $message = $input->getMessages();
+        $this->assertThat($message, $this->arrayHasKey('post_code2'));
+        $this->assertEquals($message['post_code2'][StringLength::TOO_SHORT][StringLength::TOO_SHORT], Messages::POST_CODE_LENGTH);
+
+        // 文字列長チェック 5桁
+        $input = $this->createInputFilter(['post_code2' => '12345']);
+        $this->assertFalse($input->isValid());
+
+        $message = $input->getMessages();
+        $this->assertThat($message, $this->arrayHasKey('post_code2'));
+        $this->assertEquals($message['post_code2'][StringLength::TOO_LONG][StringLength::TOO_LONG], Messages::POST_CODE_LENGTH);
+
+        // 数値以外
+        $ngList = [
+            'aaaa',
+            'ａａａａ',
+            'ああああ',
+            'アアアア',
+            'ｱｱｱｱ',
+            '１１１１',
+        ];
+        foreach ($ngList as $number) {
+            $input = $this->createInputFilter(['post_code2' => $number]);
+            $this->assertFalse($input->isValid());
+
+            $message = $input->getMessages();
+            $this->assertThat($message, $this->arrayHasKey('post_code2'));
+            $this->assertEquals($message['post_code2'], [Digits::NOT_DIGITS => Messages::POST_CODE_NOT_DIGITS]);
+        }
+    }
+
+    /**
+     * 都道府県の検証
+     */    
+    public function testPrefectureId()
+    {
+        // 必須チェック
+        $input = $this->createInputFilter(['prefecture_id' => '']);
+        $this->assertFalse($input->isValid());
+
+        $message = $input->getMessages();
+        $this->assertThat($message, $this->arrayHasKey('prefecture_id'));
+        $this->assertEquals($message['prefecture_id'], [NotEmpty::IS_EMPTY => Messages::PREFECTURE_IS_EMPTY]);
+
+        // 範囲外チェック
+        $input = $this->createInputFilter(['prefecture_id' => '0']);
+        $this->assertFalse($input->isValid());
+
+        $message = $input->getMessages();
+        $this->assertThat($message, $this->arrayHasKey('prefecture_id'));
+        $this->assertEquals($message['prefecture_id'], [Between::NOT_BETWEEN => Messages::PREFECTURE_INVAL_DATA]);
+        
+        $input = $this->createInputFilter(['prefecture_id' => '48']);
+        $this->assertFalse($input->isValid());
+
+        $message = $input->getMessages();
+        $this->assertThat($message, $this->arrayHasKey('prefecture_id'));
+        $this->assertEquals($message['prefecture_id'], [Between::NOT_BETWEEN => Messages::PREFECTURE_INVAL_DATA]);
+
+        // 有効なIDの確認
+        for ($i = 1; $i <= 47; $i++) {
+            $prefCode = strval($i);
+            $input = $this->createInputFilter(['prefecture_id' => $prefCode]);
+            $this->assertTrue($input->isValid());
+        }
+    }
+
+    /**
+     * 市区町村の検証
+     */    
+    public function testAddressCity()
+    {
+        // 必須チェック
+        $input = $this->createInputFilter(['address_city' => '']);
+        $this->assertFalse($input->isValid());
+
+        $message = $input->getMessages();
+        $this->assertThat($message, $this->arrayHasKey('address_city'));
+        $this->assertEquals($message['address_city'], [NotEmpty::IS_EMPTY => Messages::ADDRESS_CITY_IS_EMPTY]);
+
+        // 桁数チェック 41桁
+        $input = $this->createInputFilter(['address_city' => 'あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあ']);
+        $this->assertFalse($input->isValid());
+
+        $message = $input->getMessages();
+        $this->assertThat($message, $this->arrayHasKey('address_city'));
+        $this->assertEquals($message['address_city'][StringLength::TOO_LONG][StringLength::TOO_LONG], Messages::ADDRESS_CITY_LENGTH);
+    }
+
+    /**
+     * 住所その他の検証
+     */    
+    public function testAddressOther()
+    {
+        // 空値でもOK
+        $input = $this->createInputFilter(['address_other' => '']);
+        $this->assertTrue($input->isValid());
+
+        // 桁数チェック 41桁
+        $input = $this->createInputFilter(['address_other' => 'あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあ']);
+        $this->assertFalse($input->isValid());
+
+        $message = $input->getMessages();
+        $this->assertThat($message, $this->arrayHasKey('address_other'));
+        $this->assertEquals($message['address_other'][StringLength::TOO_LONG][StringLength::TOO_LONG], Messages::ADDRESS_CITY_OTHER);
+    }
+
+    /**
+     * 所属部署の検証
+     */    
+    public function testSectionId()
+    {
+        // 必須チェック
+        $input = $this->createInputFilter(['section_id' => '']);
+        $this->assertFalse($input->isValid());
+
+        $message = $input->getMessages();
+        $this->assertThat($message, $this->arrayHasKey('section_id'));
+        $this->assertEquals($message['section_id'], [NotEmpty::IS_EMPTY => Messages::SECTION_IS_EMPTY]);
+
+        // 数値以外
+        $ngList = [
+            'aaaa',
+            'ａａａａ',
+            'ああああ',
+            'アアアア',
+            'ｱｱｱｱ',
+            '１１１１',
+        ];
+        foreach ($ngList as $number) {
+            $input = $this->createInputFilter(['section_id' => $number]);
+            $this->assertFalse($input->isValid());
+
+            $message = $input->getMessages();
+            $this->assertThat($message, $this->arrayHasKey('section_id'));
+            $this->assertEquals($message['section_id'], [Digits::NOT_DIGITS => Messages::SECTION_INVAL_DATA]);
+        }
     }
 
     private function createInputFilter(array $data = [])
