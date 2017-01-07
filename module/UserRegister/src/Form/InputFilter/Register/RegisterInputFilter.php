@@ -507,7 +507,7 @@ class RegisterInputFilter extends AbstractInputFilter
                     'break_chain_on_failure' => true,
                     'options' => [
                         'messages' => [
-                            Digits::NOT_DIGITS => Messages::SECTION_IS_EMPTY,
+                            Digits::NOT_DIGITS => Messages::SECTION_INVAL_DATA,
                         ],
                     ],
                 ],
