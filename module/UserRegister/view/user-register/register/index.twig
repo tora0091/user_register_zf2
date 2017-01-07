@@ -32,6 +32,15 @@
     </td>
 </tr>
 <tr>
+    <th>性別<span class="required">必須</span></th>
+    <td>
+        <input type="radio" name="sex" value="1" {% if inputs.sex == '1' %}checked{% endif %}>男性
+        <input type="radio" name="sex" value="2" {% if inputs.sex == '2' %}checked{% endif %}>女性
+        <br />
+        <font class="error-text">{{ form.showErrorMessage(errMsg.sex)}}</font>
+    </td>
+</tr>
+<tr>
     <th>電話番号<span class="required">必須</span></th>
     <td><input type="text" name="phone_number" value="{{ inputs.phone_number }}" size="20" maxlength="10" class="input-form{% if errMsg.phone_number|length > 0 %} error-background{% endif %}" />
         <font class="error-text">{{ form.showErrorMessage(errMsg.phone_number)}}</font>

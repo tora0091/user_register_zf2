@@ -17,6 +17,10 @@
     <td>{{ inputs.family_name_kana|e }}　{{ inputs.last_name_kana|e }}</td>
 </tr>
 <tr>
+    <th>性別</th>
+    <td>{% if inputs.sex == '1' %}男性{% elseif inputs.sex == '2' %}女性{% endif %}</td>
+</tr>
+<tr>
     <th>電話番号</th>
     <td>{{ inputs.phone_number|e }}</td>
 </tr>

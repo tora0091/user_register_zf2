@@ -3,7 +3,6 @@
 namespace UserRegister\Resource\Db\Table;
 
 use UserRegister\Resource\Db\Table\AbstractTableGateway;
-use UserRegister\Common\Exception\DatabaseException;
 
 class UserTable extends AbstractTableGateway
 {
@@ -30,6 +29,7 @@ CREATE TABLE `user` (
   `last_name` varchar(20) NOT NULL,
   `family_name_kana` varchar(40) NOT NULL,
   `last_name_kana` varchar(40) NOT NULL,
+  `sex` tinyint(4) NOT NULL,
   `phone_number` varchar(10) NOT NULL,
   `mobile_phone_number` varchar(11) NOT NULL,
   `post_code` varchar(8) NOT NULL,

@@ -6,6 +6,7 @@ use UserRegister\Form\InputFilter\AbstractInputFilter;
 use UserRegister\Common\Messages;
 use Zend\Validator\Between;
 use Zend\Validator\Digits;
+use Zend\Validator\InArray;
 use Zend\Validator\NotEmpty;
 use Zend\Validator\StringLength;
 
@@ -206,6 +207,37 @@ class RegisterInputFilter extends AbstractInputFilter
             ],
         ]);
         
+        // 性別
+        $this->add([
+            'name' => 'sex',
+            'required' => true,
+            'filters' => [
+                ['name' => 'StripTags'],
+                ['name' => 'StringTrim'],
+            ],
+            'validators' => [
+                [
+                    'name' => 'NotEmpty',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'messages' => [
+                            NotEmpty::IS_EMPTY => Messages::SEX_IS_EMPTY,
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'InArray',
+                    'break_chain_on_failure' => true,
+                    'options' => [
+                        'haystack' => ['1', '2'],       // 1:男性 2:女性
+                        'messages' => [
+                            InArray::NOT_IN_ARRAY => Messages::SEX_NOT_IN_ARRAY,
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
         // 電話番号
         $this->add([
             'name' => 'phone_number',

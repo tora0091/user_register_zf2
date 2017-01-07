@@ -30,6 +30,10 @@ class Messages
     const LAST_NAME_KANA_TOO_SHORT = "名前（メイ）は40文字以内で入力してください";
     const LAST_NAME_KANA_TOO_LONG = "名前（メイ）は40文字以内で入力してください";
     
+    // 性別
+    const SEX_IS_EMPTY = "性別は必須です";
+    const SEX_NOT_IN_ARRAY = "性別に不正な値が設定されています";
+
     // 電話番号
     const PHONE_NUMBER_IS_EMPTY = "電話番号は必須です";
     const PHONE_NUMBER_NOT_DIGITS = "電話番号は数値で入力してください";
