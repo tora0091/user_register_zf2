@@ -15,7 +15,6 @@ use Zend\Mvc\MvcEvent;
 use Zend\View\Model\ViewModel;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\ServiceManager\ServiceManager;
-use Zend\Db\Adapter\Adapter;
 use Zend\Db\TableGateway\Feature\GlobalAdapterFeature;
 
 class Module
@@ -34,6 +33,9 @@ class Module
         
         // exception handler
         $eventManager->attach(MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'exceptionHandler']);
+        
+        // authorization handler
+        $eventManager->attach(MvcEvent::EVENT_DISPATCH, [$this, 'authorizationHandler'], 1);
     }
 
     public function getConfig()
@@ -107,5 +109,10 @@ class Module
                 $result->setTemplate('error/index');
             }
         }
+    }
+    
+    public function authorizationHandler(MvcEvent $e)
+    {
+        
     }
 }

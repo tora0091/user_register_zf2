@@ -1,0 +1,22 @@
+{% extends "layout/layout.twig" %}
+{% block title %}ログイン{% endblock %}
+
+{% block container %}
+<h2 class="title">管理者ログイン</h2>
+<form action="{{ basepath() }}/login/validate" method="POST">
+<table class="regster-form-table">
+<tr>
+    <th>User Name</th>
+    <td><input type="text" name="user" value="" class="input-form" autocomplete="off"/></td>
+</tr>
+<tr>
+    <th>Password</th>
+    <td><input type="password" name="password" value="" class="input-form" autocomplete="off"/></td>
+</tr>
+</table>
+<br />
+<input type="hidden" name="token" value="{{ token }}">
+<button type="submit" name="confirm-button" class="button-form">ログイン</button>
+</form>
+{% endblock %}
+

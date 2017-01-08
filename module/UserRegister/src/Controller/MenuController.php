@@ -4,10 +4,10 @@ namespace UserRegister\Controller;
 
 use Zend\View\Model\ViewModel;
 
-class MainController extends AbstractController
+class MenuController extends AbstractController
 {
     /** @var tamplate index */
-    const TAMPLATE_INDEX = 'user-register/main/index';
+    const TAMPLATE_INDEX = 'user-register/menu/index';
     
     public function indexAction()
     {

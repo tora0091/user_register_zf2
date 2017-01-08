@@ -17,7 +17,27 @@ return [
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
-                        'controller' => 'UserRegister\Controller\Main',
+                        'controller' => 'UserRegister\Controller\Login',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'login' => [
+                'type' => 'Segment',
+                'options' => [
+                    'route'    => '/login[/][:action]',
+                    'defaults' => [
+                        'controller' => 'UserRegister\Controller\Login',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'menu' => [
+                'type' => 'Segment',
+                'options' => [
+                    'route'    => '/menu[/]',
+                    'defaults' => [
+                        'controller' => 'UserRegister\Controller\Menu',
                         'action'     => 'index',
                     ],
                 ],
@@ -78,7 +98,8 @@ return [
         'invokables' => [
         ],
         'factories' => [
-            'UserRegister\Controller\Main' => Controller\Factories\MainControllerFactory::class,
+            'UserRegister\Controller\Login' => Controller\Factories\LoginControllerFactory::class,
+            'UserRegister\Controller\Menu' => Controller\Factories\MenuControllerFactory::class,
             'UserRegister\Controller\Register' => Controller\Factories\RegisterControllerFactory::class,
             'UserRegister\Controller\Search' => Controller\Factories\SearchControllerFactory::class,
         ],

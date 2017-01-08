@@ -2,14 +2,14 @@
 
 namespace UserRegister\Controller\Factories;
 
-use UserRegister\Controller\MainController;
+use UserRegister\Controller\MenuController;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class MainControllerFactory implements FactoryInterface
+class MenuControllerFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        return new MainController($serviceLocator);
+        return new MenuController($serviceLocator);
     }
 }
