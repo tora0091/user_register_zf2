@@ -34,8 +34,8 @@
 <tr>
     <th>性別<span class="required">必須</span></th>
     <td>
-        <input type="radio" name="sex" value="1" {% if inputs.sex == '1' %}checked{% endif %}>男性
-        <input type="radio" name="sex" value="2" {% if inputs.sex == '2' %}checked{% endif %}>女性
+        <input type="radio" name="sex" value="1" {% if sexFunction.isMale(inputs.sex) %}checked{% endif %}>{{ sexFunction.getMaleText() }}
+        <input type="radio" name="sex" value="2" {% if sexFunction.isFemale(inputs.sex) %}checked{% endif %}>{{ sexFunction.getFemaleText() }}
         <br />
         <font class="error-text">{{ form.showErrorMessage(errMsg.sex)}}</font>
     </td>

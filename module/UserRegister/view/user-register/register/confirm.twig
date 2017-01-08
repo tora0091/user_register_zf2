@@ -18,7 +18,7 @@
 </tr>
 <tr>
     <th>性別</th>
-    <td>{% if inputs.sex == '1' %}男性{% elseif inputs.sex == '2' %}女性{% endif %}</td>
+    <td>{{ sexFunction.getSexText(inputs.sex) }}</td>
 </tr>
 <tr>
     <th>電話番号</th>

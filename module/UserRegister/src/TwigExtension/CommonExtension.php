@@ -4,11 +4,21 @@ namespace UserRegister\TwigExtension;
 
 use Twig_Extension;
 use Twig_SimpleFunction;
+use UserRegister\Common\Type\Sex;
 
 class CommonExtension extends Twig_Extension
 {
     /**
-     * @see Twig_Extension::getFunctions()
+     * @return array
+     */
+    public function getGlobals()
+    {
+        return [
+            'sexFunction' => new Sex(),
+        ];
+    }
+
+    /**
      * @return array
      */
     public function getFunctions() 
