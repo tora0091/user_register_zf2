@@ -6,6 +6,9 @@ class Messages
 {
     // バリデーションメッセージ
     
+    // ユーザ名、パスワード
+    const LOGIN_INVALID = "ユーザ名、パスワードを確認してください";
+    
     // 社員番号
     const NUMBER_INVAL_FORMAT = "社員番号の形式が異なります";
     const NUMBER_IS_EMPTY = "社員番号は必須です";
