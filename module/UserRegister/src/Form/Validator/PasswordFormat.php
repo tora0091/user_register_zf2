@@ -17,6 +17,7 @@ class PasswordFormat extends AbstractValidator
     {
         $this->setValue($value);
         if (!preg_match("/^[a-zA-Z0-9+*?@!$%&-=~:;]{8,16}+$/", $value)) {
+            $this->error(self::INVALID_PASSWORD);
             return false;
         }
         return true;

@@ -18,7 +18,7 @@ class Password
      * verity password
      * @param string $password
      * @param string $hash
-     * @return boolean
+     * @return boolean true:OK/false:NG
      */    
     public static function isVerity($password, $hash)
     {

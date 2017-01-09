@@ -2,14 +2,14 @@
 
 namespace UserRegister\Service\Factories;
 
-use UserRegister\Service\SectionService;
+use UserRegister\Service\LoginService;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class SectionServiceFactory implements FactoryInterface
+class LoginServiceFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        return new SectionService($serviceLocator);
+        return new LoginService($serviceLocator);
     }
 }

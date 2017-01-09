@@ -2,6 +2,7 @@
 
 namespace UserRegister\Controller;
 
+use UserRegister\Common\Messages;
 use UserRegister\Form\InputFilter\Login\LoginInputFilter;
 use Zend\View\Model\ViewModel;
 
@@ -35,6 +36,15 @@ class LoginController extends AbstractController
         $input = $this->getInputFilter(new LoginInputFilter());
         if (!$input->isValid()) {
             $session->errMsg = $input->getMessages();
+            return $this->redirect()->toUrl(self::URL_INDEX_ACTION);
+        }
+
+        // admin テーブルに対して認証チェック
+        $user = $input->getValue('user');
+        $password = $input->getValue('password');
+        $loginService = $this->getService('LoginService');
+        if (!$loginService->isAuthSuccess($user, $password)) {
+            $session->errMsg = Messages::LOGIN_INVALID;
             return $this->redirect()->toUrl(self::URL_INDEX_ACTION);
         }
         return $this->redirect()->toUrl(self::URL_MENU_INDEX_ACTION);

@@ -63,4 +63,18 @@ abstract class AbstractTableGateway
         }
         return [];
     }
+
+    /**
+     * getRow
+     * @param ResultSet $result
+     */
+    public function getRow(ResultSet $result = null)
+    {
+        if ($result !== null && $result instanceof ResultSet) {
+            // 先頭1行を取得
+            $res = $result->toArray();
+            return $res[0];
+        }
+        return [];
+    }
 }

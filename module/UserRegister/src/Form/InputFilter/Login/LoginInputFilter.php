@@ -39,7 +39,7 @@ class LoginInputFilter extends AbstractInputFilter
         // パスワード
         // ※半角英大文字、半角英小文字、半角数字、半角記号（+ * ? @ ! $ % & - = ~ : ;）
         $this->add([
-            'name' => 'user',
+            'name' => 'password',
             'required' => true,
             'filters' => [
                 ['name' => 'StripTags'],

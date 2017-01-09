@@ -16,7 +16,8 @@ class UserFormat extends AbstractValidator
     public function isValid($value)
     {
         $this->setValue($value);
-        if (!preg_match("/^[a-zA-Z0-9]{8,16}+$/", $value)) {
+        if (!preg_match("/^[a-zA-Z0-9]{4,16}+$/", $value)) {
+            $this->error(self::INVALID_USER);
             return false;
         }
         return true;
