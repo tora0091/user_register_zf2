@@ -3,6 +3,9 @@
 
 {% block container %}
 <h2 class="title">管理者ログイン</h2>
+{% if errMsg is not empty %}
+<p><font class="error-text">{{ errMsg }}</font></p>
+{% endif %}
 <form action="{{ basepath() }}/login/validate" method="POST">
 <table class="regster-form-table">
 <tr>

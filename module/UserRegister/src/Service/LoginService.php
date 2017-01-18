@@ -7,6 +7,12 @@ use UserRegister\Service\AbstractService;
 
 class LoginService extends AbstractService
 {
+    /**
+     * ログイン可否
+     * @param string $user user
+     * @param string $password password
+     * @return boolean|array
+     */
     public function isAuthSuccess($user, $password)
     {
         // admin テーブルより入力されたユーザのデータ取得
@@ -19,6 +25,6 @@ class LoginService extends AbstractService
         if (!Password::isVerity($password, $userData['password'])) {
             return false;
         }
-        return true;
+        return $userData;
     }
 }

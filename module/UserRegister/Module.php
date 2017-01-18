@@ -9,6 +9,7 @@
 
 namespace UserRegister;
 
+use UserRegister\Common\ContainerTrait;
 use Zend\Mvc\Application;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
@@ -19,6 +20,8 @@ use Zend\Db\TableGateway\Feature\GlobalAdapterFeature;
 
 class Module
 {
+    use ContainerTrait;
+    
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
@@ -113,6 +116,9 @@ class Module
     
     public function authorizationHandler(MvcEvent $e)
     {
-        
+        $admin = $this->getContainer('global')->admin;
+        if (is_null($admin)) {
+            
+        }
     }
 }
