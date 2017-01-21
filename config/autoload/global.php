@@ -12,4 +12,10 @@
  */
 
 return [
+    'exclude_login_user' => [
+        'UserRegister\Controller\Login' => [
+            'index',
+            'validation',
+        ],
+    ],
 ];

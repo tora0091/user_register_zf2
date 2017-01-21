@@ -116,9 +116,20 @@ class Module
     
     public function authorizationHandler(MvcEvent $e)
     {
-        $admin = $this->getContainer('global')->admin;
-        if (is_null($admin)) {
-            
+        $serviceManager = $e->getApplication()->getServiceManager();
+        $excludeLoginUser = $serviceManager->get('config')['exclude_login_user'];
+
+        $controller = $e->getRouteMatch()->getParam('controller');
+        $action = $e->getRouteMatch()->getParam('action');
+
+        // 認証確認処理
+        if (!isset($excludeLoginUser[$controller]) || !in_array($action, $excludeLoginUser[$controller])) {
+            $admin = $this->getContainer('global')->admin;
+            if (is_null($admin)) {
+                // ログイン状態でない場合はログインを促す画面を表示する
+                $e->getResponse()->setStatusCode(404);
+                $e->getResult()->setTemplate('error/notlogin.twig');
+            }
         }
     }
 }
