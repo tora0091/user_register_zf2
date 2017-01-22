@@ -1,4 +1,55 @@
+{% extends "layout/layout.twig" %}
+{% block title %}顧客検索{% endblock %}
+
 {% block container %}
-search/index
+<h2 class="title">顧客検索</h2>
+<form action="{{ basepath() }}/search" method="POST">
+
+<table class="regster-form-table">
+<tr>
+    <th>社員番号</th>
+    <td>
+        <input type="text" name="number" value="{{ inputs.number }}" class="input-form"/>
+    </td>
+</tr>
+<tr>
+    <th>所属部署</th>
+    <td>
+        <select name="section_id">
+            <option value="">選択してください</option>
+        {% for section in sectionList %}
+            <option value="{{ section.id }}"{% if inputs.section_id == section.id %} selected{% endif %}>{{ section.name }}</option>
+        {% endfor %}
+        </select>
+    </td>
+</tr>
+</table>
+<br />
+<input type="hidden" name="token" value="{{ token }}">
+<button type="submit" name="search-button" class="button-form">検索</button>
+</form>
+
+{% if searchList is not empty %}
+<br />
+<table class="regster-form-table">
+    <tr>
+        <th>社員番号</th>
+        <th>名前</th>
+        <th>性別</th>
+        <th>所属部門</th>
+        <th>ステータス</th>
+    </tr>
+{% for list in searchList %}
+    <tr>
+        <td>{{ list.number }}</td>
+        <td>{{ list.family_name }} {{ list.last_name }}</td>
+        <td>{{ list.sex }}</td>
+        <td>{{ list.section_id }}</td>
+        <td>{{ list.status }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endif %}
+
 {% endblock %}
 

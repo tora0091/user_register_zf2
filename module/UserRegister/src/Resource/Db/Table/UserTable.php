@@ -21,6 +21,15 @@ class UserTable extends AbstractTableGateway
     {
         return $this->getTableGateway()->insert($data);
     }
+    
+    /**
+     * 検索
+     * @param array $data 検索条件
+     */
+    public function search($data)
+    {
+        return $this->getArray($this->getTableGateway()->select($data));
+    }
 }
 /*
 CREATE TABLE `user` (

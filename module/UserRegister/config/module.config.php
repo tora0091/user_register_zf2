@@ -84,6 +84,7 @@ return [
             // Service
             'UserRegister\Service\RegisterService' => Service\Factories\RegisterServiceFactory::class,
             'UserRegister\Service\LoginService' => Service\Factories\LoginServiceFactory::class,
+            'UserRegister\Service\SearchService' => Service\Factories\SearchServiceFactory::class,
         ],
     ],
     'translator' => [

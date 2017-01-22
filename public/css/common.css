@@ -1,3 +1,14 @@
+.container {
+    width: 750px;
+}
+.container-side-bar {
+    float: left;
+    width: 100px;
+}
+.container-contents {
+    float: right;
+    width: 650px;
+}
 table.regster-form-table {
     border-collapse: collapse;
     text-align: left;
