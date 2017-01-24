@@ -12,7 +12,14 @@
     </head>
     <body>
         <div class="container">
-            {% block container %}{% endblock %}
-        </div>
+            <div class="container-contents">
+                {% block container %}{% endblock %}
+            </div>
+
+{% block sideMenu %}            
+            <div class="container-side-bar">
+                {% include 'user-register/macro/side-menu.twig' %}
+            </div>
+{% endblock %}
     </body>
 </html>

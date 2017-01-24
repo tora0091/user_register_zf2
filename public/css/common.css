@@ -1,13 +1,13 @@
 .container {
-    width: 750px;
+    width: 100%;
 }
 .container-side-bar {
     float: left;
-    width: 100px;
+    width: 20%;
 }
 .container-contents {
     float: right;
-    width: 650px;
+    width: 80%;
 }
 table.regster-form-table {
     border-collapse: collapse;
