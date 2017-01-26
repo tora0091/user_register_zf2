@@ -126,9 +126,10 @@ class Module
         if (!isset($excludeLoginUser[$controller]) || !in_array($action, $excludeLoginUser[$controller])) {
             $admin = $this->getContainer('global')->admin;
             if (is_null($admin)) {
-                // ログイン状態でない場合はログインを促す画面を表示する
-                $e->getResponse()->setStatusCode(404);
-                $e->getResult()->setTemplate('error/notlogin.twig');
+                // ログイン状態でない場合はログイン画面を表示する
+                $response = $e->getResponse();
+                $response->getHeaders()->addHeaderLine('Location', '/');
+                $response->setStatusCode(302);
             }
         }
     }
