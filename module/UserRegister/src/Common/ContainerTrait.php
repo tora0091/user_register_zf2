@@ -26,6 +26,9 @@ trait ContainerTrait
      */
     public function clearContainer($namespace = null)
     {
-        $this->getContainer($namespace)->getManager()->getStorage()->clear();
+        if ($namespace === null) {
+            $namespace = get_class($this);
+        }
+        $this->getContainer()->getManager()->getStorage()->clear($namespace);
     }
 }
