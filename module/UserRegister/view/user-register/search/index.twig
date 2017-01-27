@@ -43,9 +43,9 @@
     <tr>
         <td>{{ list.number }}</td>
         <td>{{ list.family_name }} {{ list.last_name }}</td>
-        <td>{{ list.sex }}</td>
-        <td>{{ list.section_id }}</td>
-        <td>{{ list.status }}</td>
+        <td>{{ sex_func.getSexText(list.sex) }}</td>
+        <td>{{ section_text(list.section_id, sectionList) }}</td>
+        <td>{{ status_func.getStatusText(list.status) }}</td>
     </tr>
 {% endfor %}
 </table>

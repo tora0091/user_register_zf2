@@ -5,6 +5,7 @@ namespace UserRegister\TwigExtension;
 use Twig_Extension;
 use Twig_SimpleFunction;
 use UserRegister\Common\Type\Sex;
+use UserRegister\Common\Type\Status;
 
 class CommonExtension extends Twig_Extension
 {
@@ -14,7 +15,8 @@ class CommonExtension extends Twig_Extension
     public function getGlobals()
     {
         return [
-            'sexFunction' => new Sex(),
+            'sex_func' => new Sex(),
+            'status_func' => new Status(),
         ];
     }
 
@@ -24,16 +26,21 @@ class CommonExtension extends Twig_Extension
     public function getFunctions() 
     {
         return [
-            new Twig_SimpleFunction('showBranchName', [$this, 'showBranchName']),
+            new Twig_SimpleFunction('section_text', [$this, 'getSectionText']),
         ];
     }
 
     /**
-     * アプリケーションのURLを取得する
+     * セクション名取得
      * @return string
      */
-    public function showBranchName()
+    public function getSectionText($id, array $sections = null)
     {
-        
+        foreach ($sections as $section) {
+            if ($section['id'] === $id) {
+                return $section['name'];
+            }
+        }
+        return '';
     }
 }
