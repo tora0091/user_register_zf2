@@ -28,7 +28,34 @@ class UserTable extends AbstractTableGateway
      */
     public function search($data)
     {
-        return $this->getArray($this->getTableGateway()->select($data));
+        $select = $this->getTableGateway()->getSql()->select();
+        $select->columns([
+            'number',
+            'family_name',
+            'last_name',
+            'family_name_kana',
+            'last_name_kana',
+            'sex',
+            'phone_number',
+            'mobile_phone_number',
+            'post_code',
+            'prefecture_id',
+            'address_city',
+            'address_other',
+            'section_id',
+            'status',
+            'create_date',
+            'update_date'
+        ]);
+        if (isset($data['number']) && strlen($data['number']) > 0) {
+            $select->where->like('number', $data['number'] . '%');  // 前方一致
+        }
+        if (isset($data['section_id']) && strlen($data['section_id']) > 0) {
+            $select->where->equalTo('section_id', $data['section_id']);
+        }
+        $select->order('number ASC');
+
+        return $this->getArray($this->getTableGateway()->selectWith($select));
     }
 }
 /*
