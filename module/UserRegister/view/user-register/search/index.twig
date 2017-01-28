@@ -4,7 +4,6 @@
 {% block container %}
 <h2 class="title">顧客検索</h2>
 <form action="{{ basepath() }}/search" method="POST">
-
 <table class="regster-form-table">
 <tr>
     <th>社員番号</th>
@@ -33,11 +32,12 @@
 <br />
 <table class="regster-form-table">
     <tr>
-        <th>社員番号</th>
-        <th>名前</th>
-        <th>性別</th>
-        <th>所属部門</th>
-        <th>ステータス</th>
+        <th style="width: 15%">社員番号</th>
+        <th style="width: 20%">名前</th>
+        <th style="width: 10%">性別</th>
+        <th style="width: 30%">所属部門</th>
+        <th style="width: 15%">ステータス</th>
+        <th></th>
     </tr>
 {% for list in searchList %}
     <tr>
@@ -46,6 +46,12 @@
         <td>{{ sex_func.getSexText(list.sex) }}</td>
         <td>{{ section_text(list.section_id, sectionList) }}</td>
         <td>{{ status_func.getStatusText(list.status) }}</td>
+        <td>
+            <form action="{{ basepath() }}/update" method="POST">
+                <input type="hidden" name="number" value="{{ list.number }}">
+                <button type="submit" name="update-button-form" class="update-button-form">更新</button>
+            </form>
+        </td>
     </tr>
 {% endfor %}
 </table>
