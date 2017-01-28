@@ -62,6 +62,16 @@ return [
                     ],
                 ],
             ],
+            'update' =>[
+                'type' => 'Segment',
+                'options' => [
+                    'route'    => '/update[/][:action]',
+                    'defaults' => [
+                        'controller' => 'UserRegister\Controller\Update',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
         ],
     ],
     'service_manager' => [
@@ -105,6 +115,7 @@ return [
             'UserRegister\Controller\Menu' => Controller\Factories\MenuControllerFactory::class,
             'UserRegister\Controller\Register' => Controller\Factories\RegisterControllerFactory::class,
             'UserRegister\Controller\Search' => Controller\Factories\SearchControllerFactory::class,
+            'UserRegister\Controller\Update' => Controller\Factories\UpdateControllerFactory::class,
         ],
     ],
     'controller_plugins' => [
