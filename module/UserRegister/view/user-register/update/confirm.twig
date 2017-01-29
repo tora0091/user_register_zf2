@@ -1,0 +1,8 @@
+{% extends "layout/layout.twig" %}
+{% block title %}顧客更新確認{% endblock %}
+
+{% block container %}
+<h2 class="title">顧客更新確認</h2>
+{{ include('user-register/macro/confirm-form.twig', { 'page': 'update' }) }}
+{% endblock %}
+

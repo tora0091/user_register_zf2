@@ -107,20 +107,4 @@ class RegisterController extends AbstractController
         $view->setTemplate(self::TEMPLATE_COMPLETE);
         return $view;
     }
-    
-    /**
-     * リストから対象のテキストを取得
-     * @param string $code 取得するID
-     * @param array $lists 対象リスト
-     * @return string 対象テキスト
-     */
-    private function getCodeText($code, $lists)
-    {
-        foreach ($lists as $list) {
-            if ((int) $list['id'] === (int) $code) {
-                return $list['name'];
-            }
-        }
-        return "";
-    }
 }

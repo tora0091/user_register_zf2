@@ -3,68 +3,6 @@
 
 {% block container %}
 <h2 class="title">顧客登録確認</h2>
-<table class="regster-form-table">
-<tr>
-    <th>社員番号</th>
-    <td>{{ inputs.number|e }}</td>
-</tr>
-<tr>
-    <th>名前</th>
-    <td>{{ inputs.family_name|e }}　{{ inputs.last_name|e }}</td>
-</tr>
-<tr>
-    <th>名前（カナ）</th>
-    <td>{{ inputs.family_name_kana|e }}　{{ inputs.last_name_kana|e }}</td>
-</tr>
-<tr>
-    <th>性別</th>
-    <td>{{ sex_func.getSexText(inputs.sex) }}</td>
-</tr>
-<tr>
-    <th>電話番号</th>
-    <td>{{ inputs.phone_number|e }}</td>
-</tr>
-<tr>
-    <th>携帯電話番号</th>
-    <td>{{ inputs.mobile_phone_number|e }}</td>
-</tr>
-<tr>
-    <th>郵便番号</th>
-    <td>{{ inputs.post_code1|e }}-{{ inputs.post_code2|e }}</td>
-</tr>
-<tr>
-    <th>住所</th>
-    <td>
-        都道府県:
-        {{ inputs.prefectureText|e }}
-        <br />
-        市区町村:
-        {{ inputs.address_city|e }}
-        <br />
-        その他:
-        {{ inputs.address_other|e }}
-    </td>
-</tr>
-<tr>
-    <th>所属部署</th>
-    <td>{{ inputs.sectionText|e }}</td>
-</tr>
-</table>
-
-<br />
-<table>
-  <tr>
-    <td>
-      <form action="{{ basepath() }}/register" method="POST">
-        <button type="submit" name="back-button" class="button-form">戻る</button>
-      </form>
-    </td><td>
-      <form action="{{ basepath() }}/register/register" method="POST">
-        <input type="hidden" name="token" value="{{ token }}">
-        <button type="submit" name="button-register" class="button-form">登録</button>
-      </form>
-    </td>
-  </tr>
-</table>
+{{ include('user-register/macro/confirm-form.twig', { 'page': 'register' }) }}
 {% endblock %}
 

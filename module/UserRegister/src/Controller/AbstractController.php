@@ -147,4 +147,20 @@ abstract class AbstractController extends AbstractActionController
         }
         return $this->sectionList;
     }
+
+    /**
+     * リストから対象のテキストを取得
+     * @param string $code 取得するID
+     * @param array $lists 対象リスト
+     * @return string 対象テキスト
+     */
+    protected function getCodeText($code, $lists)
+    {
+        foreach ($lists as $list) {
+            if ((int) $list['id'] === (int) $code) {
+                return $list['name'];
+            }
+        }
+        return "";
+    }
 }
