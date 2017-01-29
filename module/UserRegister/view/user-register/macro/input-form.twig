@@ -1,0 +1,97 @@
+<form action="{{ basepath() }}/{{ page }}/validate" method="POST">
+<table class="regster-form-table">
+<tr>
+    <th>社員番号<span class="required">必須</span></th>
+    <td>
+        <input type="text" name="number" value="{{ inputs.number }}" class="input-form{% if errMsg.number|length > 0 %} error-background{% endif %}"/>
+        <font class="error-text">{{ form.showErrorMessage(errMsg.number)}}</font>
+    </td>
+</tr>
+<tr>
+    <th>名前<span class="required">必須</span></th>
+    <td>
+        <input type="text" name="family_name" value="{{ inputs.family_name }}" class="input-form{% if errMsg.family_name|length > 0 %} error-background{% endif %}" placeholder="姓"/>
+        <font class="error-text">{{ form.showErrorMessage(errMsg.family_name)}}</font>
+        <input type="text" name="last_name" value="{{ inputs.last_name }}" class="input-form{% if errMsg.last_name|length > 0 %} error-background{% endif %}" placeholder="名"/>
+        <font class="error-text">{{ form.showErrorMessage(errMsg.last_name)}}</font>
+    </td>
+</tr>
+<tr>
+    <th>名前（カナ）<span class="required">必須</span></th>
+    <td>
+        <input type="text" name="family_name_kana" value="{{ inputs.family_name_kana }}" class="input-form{% if errMsg.family_name_kana|length > 0 %} error-background{% endif %}" placeholder="セイ"/>
+        <font class="error-text">{{ form.showErrorMessage(errMsg.family_name_kana)}}</font>
+        <input type="text" name="last_name_kana" value="{{ inputs.last_name_kana }}" class="input-form{% if errMsg.last_name_kana|length > 0 %} error-background{% endif %}" placeholder="メイ"/>
+        <font class="error-text">{{ form.showErrorMessage(errMsg.last_name_kana)}}</font>
+    </td>
+</tr>
+<tr>
+    <th>性別<span class="required">必須</span></th>
+    <td>
+        <input type="radio" name="sex" value="1" {% if sex_func.isMale(inputs.sex) %}checked{% endif %}>{{ sex_func.getMaleText() }}
+        <input type="radio" name="sex" value="2" {% if sex_func.isFemale(inputs.sex) %}checked{% endif %}>{{ sex_func.getFemaleText() }}
+        <br />
+        <font class="error-text">{{ form.showErrorMessage(errMsg.sex)}}</font>
+    </td>
+</tr>
+<tr>
+    <th>電話番号<span class="required">必須</span></th>
+    <td><input type="text" name="phone_number" value="{{ inputs.phone_number }}" size="20" maxlength="10" class="input-form{% if errMsg.phone_number|length > 0 %} error-background{% endif %}" />
+        <font class="error-text">{{ form.showErrorMessage(errMsg.phone_number)}}</font>
+    </td>
+</tr>
+<tr>
+    <th>携帯電話番号<span class="required">必須</span></th>
+    <td><input type="text" name="mobile_phone_number" value="{{ inputs.mobile_phone_number }}" size="20" maxlength="11" class="input-form{% if errMsg.mobile_phone_number|length > 0 %} error-background{% endif %}" />
+        <font class="error-text">{{ form.showErrorMessage(errMsg.mobile_phone_number)}}</font>
+    </td>
+</tr>
+<tr>
+    <th>郵便番号<span class="required">必須</span></th>
+    <td><input type="text" name="post_code1" value="{{ inputs.post_code1 }}" size="3" maxlength="3" class="input-form{% if errMsg.post_code1|length > 0 %} error-background{% endif %}" />
+        -
+        <input type="text" name="post_code2" value="{{ inputs.post_code2 }}" size="4" maxlength="4" class="input-form{% if errMsg.post_code2|length > 0 %} error-background{% endif %}" />
+        <font class="error-text">{{ form.showErrorMessage(errMsg.post_code1)}}</font>
+        {% if errMsg.post_code1 is empty %}
+            <font class="error-text">{{ form.showErrorMessage(errMsg.post_code2)}}</font>
+        {% endif %}
+    </td>
+</tr>
+<tr>
+    <th>住所</th>
+    <td>
+        都道府県<span class="required">必須</span>
+        <select name="prefecture_id" class="{% if errMsg.prefecture_id|length > 0 %}error-background{% endif %}">
+            <option value="">選択してください</option>
+        {% for prefecture in prefectureList %}
+            <option value="{{ prefecture.id }}"{% if inputs.prefecture_id == prefecture.id %} selected{% endif %}>{{ prefecture.name }}</option>
+        {% endfor %}
+        </select>
+        <font class="error-text">{{ form.showErrorMessage(errMsg.prefecture_id)}}</font>
+        
+        <br />
+        市区町村<span class="required">必須</span>
+        <input type="text" name="address_city" value="{{ inputs.address_city }}" class="input-form{% if errMsg.address_city|length > 0 %} error-background{% endif %}"/>
+        <font class="error-text">{{ form.showErrorMessage(errMsg.address_city)}}</font>
+        <br />
+        その他<input type="text" name="address_other" value="{{ inputs.address_other }}" class="input-form{% if errMsg.address_other|length > 0 %} error-background{% endif %}"/>
+        <font class="error-text">{{ form.showErrorMessage(errMsg.address_other)}}</font>
+    </td>
+</tr>
+<tr>
+    <th>所属部署<span class="required">必須</span></th>
+    <td>
+        <select name="section_id" class="{% if errMsg.section_id|length > 0 %}error-background{% endif %}">
+            <option value="">選択してください</option>
+        {% for section in sectionList %}
+            <option value="{{ section.id }}"{% if inputs.section_id == section.id %} selected{% endif %}>{{ section.name }}</option>
+        {% endfor %}
+        </select>
+        <font class="error-text">{{ form.showErrorMessage(errMsg.section_id)}}</font>
+    </td>
+</tr>
+</table>
+<br />
+<input type="hidden" name="token" value="{{ token }}">
+<button type="submit" name="confirm-button" class="button-form">確認</button>
+</form>
