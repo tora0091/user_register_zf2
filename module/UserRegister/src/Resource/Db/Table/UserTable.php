@@ -57,6 +57,33 @@ class UserTable extends AbstractTableGateway
 
         return $this->getArray($this->getTableGateway()->selectWith($select));
     }
+    
+    public function findByNumber($number)
+    {
+        $select = $this->getTableGateway()->getSql()->select();
+        $select->columns([
+            'number',
+            'family_name',
+            'last_name',
+            'family_name_kana',
+            'last_name_kana',
+            'sex',
+            'phone_number',
+            'mobile_phone_number',
+            'post_code',
+            'prefecture_id',
+            'address_city',
+            'address_other',
+            'section_id',
+            'status',
+            'create_date',
+            'update_date'
+        ])->where
+                ->equalTo('number', $number);
+        $select->limit(1);
+
+        return $this->getRow($this->getTableGateway()->selectWith($select));
+    }
 }
 /*
 CREATE TABLE `user` (
