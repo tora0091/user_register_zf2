@@ -84,6 +84,11 @@ class UserTable extends AbstractTableGateway
 
         return $this->getRow($this->getTableGateway()->selectWith($select));
     }
+    
+    public function update($primaryKey, $changed)
+    {
+        return $this->getTableGateway()->update($changed, ['number' => $primaryKey]);
+    }
 }
 /*
 CREATE TABLE `user` (

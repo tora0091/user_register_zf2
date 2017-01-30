@@ -88,7 +88,26 @@ class UpdateController extends AbstractController
         $view->setTemplate(self::TEMPLATE_CONFIRM);
         return $view;
     }
+    
+    public function updateAction()
+    {
+        $session = $this->getSession();
+        $this->token()->checkToken($this->getRequest(), $session);
 
+        $updateService = $this->getService('UpdateService');
+        $updateService->update($session->inputs);
+        $this->clearSession();
+
+        return $this->redirect()->toUrl(self::URL_COMPLETE_ACTION);
+    }
+
+    public function completeAction()
+    {
+        $view = new ViewModel();
+        $view->setTemplate(self::TEMPLATE_COMPLETE);
+        return $view;
+    }
+    
     private function redirectPage()
     {
         $response = $this->getResponse();

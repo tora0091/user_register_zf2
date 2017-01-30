@@ -38,7 +38,7 @@ class TokenPlugin extends AbstractPlugin
     {
         $postToken = $request->getPost('token');
         $sessionToken = $session->token;
-        
+
         if ($postToken !== $sessionToken) {
             throw new NotTokenException();
         }
