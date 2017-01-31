@@ -44,6 +44,12 @@
     <th>所属部署</th>
     <td>{{ inputs.sectionText|e }}</td>
 </tr>
+{% if page == 'update' %}
+<tr>
+    <th>ステータス</th>
+    <td>{{ status_func.getStatusText(inputs.status) }}</td>
+</tr>
+{% endif %}
 </table>
 
 <br />

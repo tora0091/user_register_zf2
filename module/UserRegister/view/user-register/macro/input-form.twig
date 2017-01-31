@@ -99,8 +99,8 @@
 <tr>
     <th>ステータス<span class="required">必須</span></th>
     <td>
-        <input type="radio" name="status" value="{{ status_func.getEnableKey() }}" {% if status_func.isMale(inputs.status) %}checked{% endif %}>{{ status_func.getEnableText() }}
-        <input type="radio" name="status" value="{{ status_func.getDisableKey() }}" {% if status_func.isFemale(inputs.status) %}checked{% endif %}>{{ status_func.getDisableText() }}
+        <input type="radio" name="status" value="{{ status_func.getEnableKey() }}" {% if status_func.isEnable(inputs.status) %}checked{% endif %}>{{ status_func.getEnableText() }}
+        <input type="radio" name="status" value="{{ status_func.getDisableKey() }}" {% if status_func.isDisable(inputs.status) %}checked{% endif %}>{{ status_func.getDisableText() }}
         <br />
         <font class="error-text">{{ form.showErrorMessage(errMsg.status)}}</font>
     </td>

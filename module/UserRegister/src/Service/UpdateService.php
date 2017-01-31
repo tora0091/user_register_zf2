@@ -68,6 +68,7 @@ class UpdateService extends AbstractService
             'address_city',
             'address_other',
             'section_id',
+            'status',
         ];
     }
 }
