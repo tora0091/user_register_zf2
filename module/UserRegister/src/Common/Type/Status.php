@@ -22,4 +22,34 @@ class Status
         }
         return "";
     }
+
+    public function getEnableKey()
+    {
+        return self::STATUS_ENABLE;
+    }
+
+    public function getDisableKey()
+    {
+        return self::STATUS_DISENABLE;
+    }
+    
+    public function getEnableText()
+    {
+        return self::TEXT_STATUS_ENABLE;
+    }
+    
+    public function getDisableText()
+    {
+        return self::TEXT_STATUS_DISENABLE;
+    }
+    
+    public function isEnable($key)
+    {
+        return $key === self::STATUS_ENABLE;
+    }
+
+    public function isDisable($key)
+    {
+        return $key === self::STATUS_DISENABLE;
+    }
 }

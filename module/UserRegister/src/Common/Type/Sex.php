@@ -22,6 +22,16 @@ class Sex
         }
         return "";
     }
+    
+    public function getMaleKey()
+    {
+        return self::KEY_MALE;
+    }
+    
+    public function getFemaleKey()
+    {
+        return self::KEY_FEMALE;
+    }
 
     public function getMaleText()
     {
