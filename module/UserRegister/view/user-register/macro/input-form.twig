@@ -33,8 +33,8 @@
 <tr>
     <th>性別<span class="required">必須</span></th>
     <td>
-        <input type="radio" name="sex" value="1" {% if sex_func.isMale(inputs.sex) %}checked{% endif %}>{{ sex_func.getMaleText() }}
-        <input type="radio" name="sex" value="2" {% if sex_func.isFemale(inputs.sex) %}checked{% endif %}>{{ sex_func.getFemaleText() }}
+        <input type="radio" name="sex" value="{{ sex_func.getMaleKey() }}" {% if sex_func.isMale(inputs.sex) %}checked{% endif %}>{{ sex_func.getMaleText() }}
+        <input type="radio" name="sex" value="{{ sex_func.getFemaleKey() }}" {% if sex_func.isFemale(inputs.sex) %}checked{% endif %}>{{ sex_func.getFemaleText() }}
         <br />
         <font class="error-text">{{ form.showErrorMessage(errMsg.sex)}}</font>
     </td>
@@ -95,6 +95,17 @@
         <font class="error-text">{{ form.showErrorMessage(errMsg.section_id)}}</font>
     </td>
 </tr>
+{% if page == 'update' %}
+<tr>
+    <th>ステータス<span class="required">必須</span></th>
+    <td>
+        <input type="radio" name="status" value="{{ status_func.getEnableKey() }}" {% if status_func.isMale(inputs.status) %}checked{% endif %}>{{ status_func.getEnableText() }}
+        <input type="radio" name="status" value="{{ status_func.getDisableKey() }}" {% if status_func.isFemale(inputs.status) %}checked{% endif %}>{{ status_func.getDisableText() }}
+        <br />
+        <font class="error-text">{{ form.showErrorMessage(errMsg.status)}}</font>
+    </td>
+</tr>
+{% endif %}
 </table>
 <br />
 <input type="hidden" name="token" value="{{ token }}">
