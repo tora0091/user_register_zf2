@@ -66,6 +66,10 @@ class Messages
     // 所属部署
     const SECTION_IS_EMPTY = "所属部署は必須です";
     const SECTION_INVAL_DATA = "所属部署に不正な値が設定されています";
+
+    // ステータス
+    const STATUS_IS_EMPTY = "ステータスは必須です";
+    const STATUS_NOT_IN_ARRAY = "ステータスに不正な値が設定されています";
     
     // バリデータ関連
     const INVALID_STRING_KATAKANA_ZENKAKU = "全角カタカナで入力してください";
