@@ -40,7 +40,11 @@
         <th></th>
     </tr>
 {% for list in searchList %}
+    {% if status_func.isDisable(list.status) %}
+    <tr style="background-color: #999999">
+    {% else %}
     <tr>
+    {% endif %}
         <td>{{ list.number }}</td>
         <td>{{ list.family_name }} {{ list.last_name }}</td>
         <td>{{ sex_func.getSexText(list.sex) }}</td>
