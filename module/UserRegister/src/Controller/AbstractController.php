@@ -163,4 +163,20 @@ abstract class AbstractController extends AbstractActionController
         }
         return "";
     }
+
+    /**
+     * 郵便番号分割
+     * @param string $postCode 郵便番号
+     * @return array
+     */
+    protected function splitPostCode($postCode)
+    {
+        $data['post_code1'] = "";
+        $data['post_code2'] = "";
+        if (isset($postCode) && strlen($postCode) > 0) {
+            $data['post_code1'] = substr($postCode, 0, 3);
+            $data['post_code2'] = substr($postCode, 3, 4);
+        }
+        return $data;
+    }
 }

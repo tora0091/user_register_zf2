@@ -62,6 +62,16 @@ return [
                     ],
                 ],
             ],
+            'user' =>[
+                'type' => 'Segment',
+                'options' => [
+                    'route'    => '/user/[:number]',
+                    'defaults' => [
+                        'controller' => 'UserRegister\Controller\Search',
+                        'action'     => 'user',
+                    ],
+                ],
+            ],
             'update' =>[
                 'type' => 'Segment',
                 'options' => [

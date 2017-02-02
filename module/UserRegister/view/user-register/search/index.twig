@@ -45,7 +45,7 @@
     {% else %}
     <tr>
     {% endif %}
-        <td>{{ list.number }}</td>
+        <td><a href="{{ basepath() }}/user/{{ list.number }}" target="_blank">{{ list.number }}</a></td>
         <td>{{ list.family_name }} {{ list.last_name }}</td>
         <td>{{ sex_func.getSexText(list.sex) }}</td>
         <td>{{ section_text(list.section_id, sectionList) }}</td>

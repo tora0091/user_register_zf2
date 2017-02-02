@@ -48,8 +48,7 @@ class UpdateController extends AbstractController
 
         // 郵便番号分割
         if (isset($inputs['post_code']) && strlen($inputs['post_code']) > 0) {
-            $inputs['post_code1'] = substr($inputs['post_code'], 0, 3);
-            $inputs['post_code2'] = substr($inputs['post_code'], 3, 4);
+            $inputs += $this->splitPostCode($inputs['post_code']);
         }
         $view->setVariable('inputs', $inputs);
         

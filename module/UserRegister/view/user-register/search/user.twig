@@ -1,0 +1,10 @@
+{% extends "layout/layout.twig" %}
+{% block title %}顧客情報確認{% endblock %}
+
+{% block sideMenu '' %}
+
+{% block container %}
+<h2 class="title">顧客情報確認</h2>
+{{ include('user-register/macro/confirm-form.twig', { 'page': 'user' }) }}
+{% endblock %}
+
