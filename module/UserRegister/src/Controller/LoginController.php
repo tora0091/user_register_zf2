@@ -56,4 +56,11 @@ class LoginController extends AbstractController
         ];
         return $this->redirect()->toUrl(self::URL_MENU_INDEX_ACTION);
     }
+    
+    public function logoutAction()
+    {
+        $this->clearContainer();
+        $this->clearGlobalSession();
+        return $this->redirect()->toUrl(self::URL_INDEX_ACTION);
+    }
 }
