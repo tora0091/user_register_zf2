@@ -3,5 +3,26 @@
 
 {% block container %}
 <h2 class="title">お知らせ</h2>
+
+{% if infomation is empty %}
+    <p>お知らせはありません</p>
+{% else %}
+    {% for info in infomation %}
+    <table class="regster-form-table">
+        <tr>
+            <td>
+                <div class="info-title">{{ info.title }}</div>
+                <div>{{ info.content|nl2br }}</div>
+                <div class="info-date">
+                    <br />
+                    掲載開始日：{{ info.start_date|date('Y/m/d') }}<br />
+                    掲載終了日：{{ info.end_date|date('Y/m/d') }}
+                </div>
+            </td>
+        </tr>
+    </table>
+    {% endfor %}
+{% endif %}
+
 {% endblock %}
 

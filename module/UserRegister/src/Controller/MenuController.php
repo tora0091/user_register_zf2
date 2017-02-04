@@ -12,6 +12,7 @@ class MenuController extends AbstractController
     public function indexAction()
     {
         $view = new ViewModel();
+        $view->setVariable("infomation", $this->getService("InfomationService")->getInfomationList());
         $view->setTemplate(self::TAMPLATE_INDEX);
         return $view;
     }

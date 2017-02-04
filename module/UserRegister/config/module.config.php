@@ -91,6 +91,7 @@ return [
             'UserRegister\Resource\Db\Table\SectionTable' => Resource\Db\Table\SectionTable::class,
             'UserRegister\Resource\Db\Table\UserTable' => Resource\Db\Table\UserTable::class,
             'UserRegister\Resource\Db\Table\AdminTable' => Resource\Db\Table\AdminTable::class,
+            'UserRegister\Resource\Db\Table\InfomationTable' => Resource\Db\Table\InfomationTable::class,
         ],
         'abstract_factories' => [
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -106,6 +107,7 @@ return [
             'UserRegister\Service\LoginService' => Service\Factories\LoginServiceFactory::class,
             'UserRegister\Service\SearchService' => Service\Factories\SearchServiceFactory::class,
             'UserRegister\Service\UpdateService' => Service\Factories\UpdateServiceFactory::class,
+            'UserRegister\Service\InfomationService' => Service\Factories\InfomationServiceFactory::class,
         ],
     ],
     'translator' => [

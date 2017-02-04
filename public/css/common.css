@@ -96,3 +96,11 @@ select {
 .error-background {
     background: #ffc0cb;
 }
+.info-title {
+    font-weight: bold;
+}
+.info-date {
+    font-weight: bold;
+    font-size: 11px;
+}
+
