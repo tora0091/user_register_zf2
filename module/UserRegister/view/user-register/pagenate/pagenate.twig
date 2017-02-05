@@ -1,0 +1,13 @@
+<div style="font-size: 14px; text-align: center; width: 100%; margin: 10px 10px 10px 10px">
+{% if pagenate.isPrev %}
+    <span style="margin-right: 20px"><a href="{{ basepath() }}/search/{{ pagenate.prevPage }}">前へ</a></span>
+{% else %}
+    <span style="margin-right: 20px">前へ</span>
+{% endif %}
+<span>{{ pagenate.currentPage}}/{{ pagenate.allPage }}</span>
+{% if pagenate.isNext %}
+    <span style="margin-left: 20px"><a href="{{ basepath() }}/search/{{ pagenate.nextPage }}">次へ</a></span>
+{% else %}
+    <span style="margin-left: 20px">次へ</span>
+{% endif %}
+</div>

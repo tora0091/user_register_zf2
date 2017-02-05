@@ -53,9 +53,9 @@ return [
                 ],
             ],
             'search' =>[
-                'type' => 'Literal',
+                'type' => 'Segment',
                 'options' => [
-                    'route'    => '/search',
+                    'route'    => '/search[/[:page]]',
                     'defaults' => [
                         'controller' => 'UserRegister\Controller\Search',
                         'action'     => 'index',

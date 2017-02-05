@@ -30,6 +30,7 @@
 
 {% if searchList is not empty %}
 <br />
+{{ include('user-register/pagenate/pagenate.twig', { 'pagenate': pagenate }) }}
 <table class="regster-form-table">
     <tr>
         <th style="width: 15%">社員番号</th>
@@ -59,6 +60,7 @@
     </tr>
 {% endfor %}
 </table>
+{{ include('user-register/pagenate/pagenate.twig', { 'pagenate': pagenate }) }}
 {% endif %}
 
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace UserRegister\Resource\Db\Table;
 
 use UserRegister\Resource\Db\Table\AbstractTableGateway;
+USE Zend\Db\Sql\Expression;
 
 class UserTable extends AbstractTableGateway
 {
@@ -26,7 +27,7 @@ class UserTable extends AbstractTableGateway
      * 検索
      * @param array $data 検索条件
      */
-    public function search($data)
+    public function search($data, $page = 1, $limit = 10)
     {
         $select = $this->getTableGateway()->getSql()->select();
         $select->columns([
@@ -54,6 +55,8 @@ class UserTable extends AbstractTableGateway
             $select->where->equalTo('section_id', $data['section_id']);
         }
         $select->order('number ASC');
+        $select->limit((int)$limit);
+        $select->offset((int)(($page - 1) * $limit));
 
         return $this->getArray($this->getTableGateway()->selectWith($select));
     }
@@ -88,6 +91,22 @@ class UserTable extends AbstractTableGateway
     public function update($primaryKey, $changed)
     {
         return $this->getTableGateway()->update($changed, ['number' => $primaryKey]);
+    }
+    
+    public function count($data)
+    {
+        $select = $this->getTableGateway()->getSql()->select();
+        $select->columns([
+            'count' => new Expression('COUNT(1)'),
+        ]);
+        if (isset($data['number']) && strlen($data['number']) > 0) {
+            $select->where->like('number', $data['number'] . '%');  // 前方一致
+        }
+        if (isset($data['section_id']) && strlen($data['section_id']) > 0) {
+            $select->where->equalTo('section_id', $data['section_id']);
+        }
+
+        return $this->getRow($this->getTableGateway()->selectWith($select));
     }
 }
 /*

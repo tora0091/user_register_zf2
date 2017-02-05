@@ -12,6 +12,9 @@
  */
 
 return [
+    'default' => [
+        'search_page_limit' => 10,
+    ],
     'exclude_login_user' => [
         'UserRegister\Controller\Login' => [
             'index',

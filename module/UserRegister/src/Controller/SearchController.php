@@ -14,23 +14,25 @@ class SearchController extends AbstractController
     {
         $view = new ViewModel();
         $session = $this->getSession();
-        $searchList = [];
 
-        // 検索ボタン押下
-        if ($this->getRequest()->isPost()) {
-            $this->token()->checkToken($this->getRequest(), $session);
-
-            $searchData = [];
-            $paramNames = ['number', 'section_id'];
-            foreach ($paramNames as $name) {
-                if ($this->params()->fromPost($name) !== null && $this->params()->fromPost($name) !== '') {
-                    $searchData[$name] = $this->params()->fromPost($name);
-                }
+        // 検索条件
+        $searchData = [];
+        $paramNames = ['number', 'section_id'];
+        foreach ($paramNames as $name) {
+            if ($this->params()->fromPost($name) !== null && $this->params()->fromPost($name) !== '') {
+                $searchData[$name] = $this->params()->fromPost($name);
             }
-            // 検索処理
-            $searchList = $this->getService('SearchService')->search($searchData);
-            $view->setVariable('inputs', $searchData);
         }
+        // 検索処理
+        $page = $this->params()->fromRoute('page', 1);
+        $limit = $this->getConfig()['search_page_limit'];
+        $searchList = $this->getService('SearchService')->search($searchData, $page, $limit);
+        $view->setVariable('inputs', $searchData);
+        
+        // ページャ作成
+        $pagenate = $this->getService('SearchService')->pagenate($searchData, $page, $limit);
+        $view->setVariable('pagenate', $pagenate);
+        
         $this->token()->setToken($view, $session);
         $view->setVariable('searchList', $searchList);
         $view->setVariable('sectionList', $this->getSectionList());
