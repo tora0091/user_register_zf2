@@ -31,4 +31,13 @@ trait ContainerTrait
         }
         $this->getContainer()->getManager()->getStorage()->clear($namespace);
     }
+
+    /**
+     * セッションオールクリア
+     * @return void
+     */
+    public function clearAllContainer()
+    {
+        $this->getContainer()->getManager()->getStorage()->clear();
+    }
 }

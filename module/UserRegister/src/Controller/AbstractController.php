@@ -121,7 +121,7 @@ abstract class AbstractController extends AbstractActionController
      */
     public function clearAll()
     {
-        $this->clearContainer();
+        $this->clearAllContainer();
     }
     
     /**

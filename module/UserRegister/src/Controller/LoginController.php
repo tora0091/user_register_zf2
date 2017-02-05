@@ -16,7 +16,7 @@ class LoginController extends AbstractController
     public function indexAction()
     {
         $view = new ViewModel();
-
+        
         $session = $this->getSession();
         if (!empty($session->errMsg)) {
             $errMsg = $session->errMsg;
@@ -59,8 +59,7 @@ class LoginController extends AbstractController
     
     public function logoutAction()
     {
-        $this->clearContainer();
-        $this->clearGlobalSession();
+        $this->clearAll();
         return $this->redirect()->toUrl(self::URL_INDEX_ACTION);
     }
 }
