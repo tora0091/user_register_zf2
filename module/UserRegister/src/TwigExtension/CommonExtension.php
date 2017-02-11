@@ -4,11 +4,12 @@ namespace UserRegister\TwigExtension;
 
 use Twig_Extension;
 use Twig_SimpleFunction;
+use UserRegister\Common\Type\Auth;
 use UserRegister\Common\Type\Sex;
 use UserRegister\Common\Type\Status;
 
 class CommonExtension extends Twig_Extension
-{
+{    
     /**
      * @return array
      */
@@ -17,6 +18,7 @@ class CommonExtension extends Twig_Extension
         return [
             'sex_func' => new Sex(),
             'status_func' => new Status(),
+            'auth' => new Auth(),
         ];
     }
 

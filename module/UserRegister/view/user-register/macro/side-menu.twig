@@ -3,6 +3,14 @@
     <li><a href="{{ basepath() }}/register">新規登録</a></li>
     <li><a href="{{ basepath() }}/search">検索/更新</a></li>
 </ul>
+{% if auth.isAdmin() %}
 <ul>
+    <li><a href="{{ basepath() }}/">管理者登録</a></li>
+    <li><a href="{{ basepath() }}/">管理者検索/更新</a></li>
+    <li><a href="{{ basepath() }}/">お知らせ登録</a></li>
+</ul>
+{% endif %}
+<ul>
+    <li><a href="{{ basepath() }}/menu">トップ</a></li>
     <li><a href="{{ basepath() }}/login/logout">ログアウト</a></li>
 </ul>

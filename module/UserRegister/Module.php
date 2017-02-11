@@ -39,6 +39,9 @@ class Module
         
         // authorization handler
         $eventManager->attach(MvcEvent::EVENT_DISPATCH, [$this, 'authorizationHandler'], 1);
+
+        // view handler
+//        $eventManager->attach(MvcEvent::EVENT_RENDER, [$this, 'viewHandler']);
     }
 
     public function getConfig()
@@ -133,4 +136,10 @@ class Module
             }
         }
     }
+
+//    public function viewHandler(MvcEvent $e)
+//    {
+//        $view = $e->getViewModel();
+//        $view->setVariable('admin', $this->getContainer('global')->admin);
+//    }
 }
