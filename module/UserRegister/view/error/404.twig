@@ -1,3 +1,17 @@
+{% extends "layout/layout.twig" %}
+{% block title %}File Not Found.{% endblock %}
+
+{% block sideMenu '' %}
+
 {% block container %}
-<h2>Sorry. File not found.</h2>
+<h2 class="title">Sorry, File Not Found.</h2>
+<table class="regster-form-table">
+<tr>
+    <td>
+        <p>お探しのページは見つかりません。</p>
+        <p>一時的にアクセスできない状態か、移動もしくは削除されてしまった可能性があります。</p>
+        <a href="{{ basepath() }}/menu">トップページへ戻る</a>
+    </td>
+</tr>
+</table>
 {% endblock %}
