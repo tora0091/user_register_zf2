@@ -7,6 +7,7 @@ use Twig_SimpleFunction;
 use UserRegister\Common\Type\Auth;
 use UserRegister\Common\Type\Sex;
 use UserRegister\Common\Type\Status;
+use UserRegister\Common\Util\Environment;
 
 class CommonExtension extends Twig_Extension
 {    
@@ -19,6 +20,7 @@ class CommonExtension extends Twig_Extension
             'sex_func' => new Sex(),
             'status_func' => new Status(),
             'auth' => new Auth(),
+            'env' => new Environment(),
         ];
     }
 
