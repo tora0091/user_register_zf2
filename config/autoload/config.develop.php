@@ -17,6 +17,9 @@ return [
             PDO::ATTR_PERSISTENT => true,
         ],
     ],
+    'view_manager' => [
+        'basepath' => 'http://develop.domain/',
+    ],
     'log' => [
         'Log\App' => [
             'writers' => [
