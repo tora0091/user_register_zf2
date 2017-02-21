@@ -31,6 +31,7 @@ class CommonExtension extends Twig_Extension
     {
         return [
             new Twig_SimpleFunction('section_text', [$this, 'getSectionText']),
+            new Twig_SimpleFunction('php_*', [$this, 'phpFunctions'], ['is_safe' => null]),
         ];
     }
 
@@ -46,5 +47,30 @@ class CommonExtension extends Twig_Extension
             }
         }
         return '';
+    }
+
+    /**
+     * twigでphp関数の利用を可能とする
+     */
+    public function phpFunctions()
+    {
+        $arg_list = func_get_args();
+        $function = array_shift($arg_list);
+
+        $allowFunctions = [
+            'var_dump',
+        ];
+        if (in_array($function, $allowFunctions) == false) {
+            return null;
+        }
+        if (is_callable($function)) {
+            return call_user_func_array($function, $arg_list);
+        }
+
+        $errMsg = 'Called to an undefined function : <b>php_' . $function . "</b> ";
+
+        trigger_error($errMsg, E_USER_NOTICE);
+
+        return null;
     }
 }
