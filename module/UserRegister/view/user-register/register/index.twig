@@ -2,6 +2,10 @@
 {% extends "layout/layout.twig" %}
 {% block title %}顧客登録{% endblock %}
 
+{% block js %}
+<script type="text/javascript" src="/js/check_number.js"></script>
+{% endblock %}
+
 {% block container %}
 <h2 class="title">顧客登録</h2>
 {{ include('user-register/macro/input-form.twig', { 'page': 'register' }) }}

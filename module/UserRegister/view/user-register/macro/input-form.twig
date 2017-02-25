@@ -4,12 +4,12 @@
     <th>社員番号<span class="required">必須</span></th>
     <td>
 {% if page == 'register' %}        
-        <input type="text" name="number" value="{{ inputs.number }}" class="input-form{% if errMsg.number|length > 0 %} error-background{% endif %}"/>
+        <input type="text" id="number" name="number" value="{{ inputs.number }}" class="input-form{% if errMsg.number|length > 0 %} error-background{% endif %}"/>
 {% elseif page == 'update' %}
         {{ inputs.number }}
         <input type="hidden" name="number" value="{{ inputs.number }}">
 {% endif %}
-        <font class="error-text">{{ form.showErrorMessage(errMsg.number)}}</font>
+        <font id="error-text-for-number" class="error-text">{{ form.showErrorMessage(errMsg.number)}}</font>
     </td>
 </tr>
 <tr>

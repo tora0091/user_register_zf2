@@ -82,6 +82,16 @@ return [
                     ],
                 ],
             ],
+            'check_number' =>[
+                'type' => 'Literal',
+                'options' => [
+                    'route'    => '/check_number',
+                    'defaults' => [
+                        'controller' => 'UserRegister\Controller\Ajax\CheckNumber',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
         ],
     ],
     'service_manager' => [
@@ -129,6 +139,7 @@ return [
             'UserRegister\Controller\Register' => Controller\Factories\RegisterControllerFactory::class,
             'UserRegister\Controller\Search' => Controller\Factories\SearchControllerFactory::class,
             'UserRegister\Controller\Update' => Controller\Factories\UpdateControllerFactory::class,
+            'UserRegister\Controller\Ajax\CheckNumber' => Controller\Factories\CheckNumberControllerFactory::class,
         ],
     ],
     'controller_plugins' => [
@@ -149,6 +160,9 @@ return [
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',
+        ],
+        'strategies' => [
+            'ViewJsonStrategy',
         ],
     ],
     // Placeholder for console routes
