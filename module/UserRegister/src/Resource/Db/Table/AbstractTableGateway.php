@@ -73,6 +73,10 @@ abstract class AbstractTableGateway
         if ($result !== null && $result instanceof ResultSet) {
             // 先頭1行を取得
             $res = $result->toArray();
+            // 検索結果が0件の場合も空配列を返す
+            if (empty($res)) {
+                return [];
+            }
             return $res[0];
         }
         return [];
