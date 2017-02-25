@@ -4,6 +4,7 @@ namespace UserRegister\Controller;
 
 use UserRegister\Form\InputFilter\Register\RegisterInputFilter;
 use UserRegister\Common\Exception\FileNotFoundException;
+use UserRegister\Common\Messages;
 use Zend\View\Model\ViewModel;
 
 class RegisterController extends AbstractController
@@ -56,6 +57,12 @@ class RegisterController extends AbstractController
         if (!$input->isValid()) {
             // エラーの場合は入力画面へ戻る
             $session->errMsg = $input->getMessages();
+            return $this->redirect()->toUrl(self::URL_INDEX_ACTION);
+        }
+
+        // 入力した社員番号がすでに存在した場合はエラーとする
+        if ($this->getService('RegisterService')->isExist($session->inputs['number'])) {
+            $session->errMsg = ['number' => ['msg' => Messages::NUMBER_IS_EXIST]];
             return $this->redirect()->toUrl(self::URL_INDEX_ACTION);
         }
         return $this->redirect()->toUrl(self::URL_CONFIRM_ACTION);

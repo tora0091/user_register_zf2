@@ -12,6 +12,7 @@ class Messages
     // 社員番号
     const NUMBER_INVAL_FORMAT = "社員番号の形式が異なります";
     const NUMBER_IS_EMPTY = "社員番号は必須です";
+    const NUMBER_IS_EXIST = "社員番号はすでに登録されています";
     
     // 名前（姓）
     const FAMILY_NAME_IS_EMPTY = "名前（姓）は必須です";

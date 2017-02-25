@@ -56,4 +56,9 @@ class RegisterService extends AbstractService
         }
         return $res;
     }
+    
+    public function isExist($number)
+    {
+        return $this->getTable('UserTable')->isExist($number);
+    }
 }

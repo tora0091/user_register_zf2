@@ -61,6 +61,11 @@ class UserTable extends AbstractTableGateway
         return $this->getArray($this->getTableGateway()->selectWith($select));
     }
     
+    public function isExist($number)
+    {
+        return count($this->findByNumber($number)) <= 0 ? false : true;
+    }
+    
     public function findByNumber($number)
     {
         $select = $this->getTableGateway()->getSql()->select();
