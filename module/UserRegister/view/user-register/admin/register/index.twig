@@ -3,7 +3,23 @@
 
 {% block container %}
 <h2 class="title">管理者一覧</h2>
-{{ php_var_dump(adminList) }}
 
+{% if adminList is not empty %}
+<table class="regster-form-table">
+    <tr>
+        <th style="width: 10%">ID</th>
+        <th style="width: 15%">ユーザ名</th>
+        <th style="width: 10%">権限</th>
+        <th style="width: 15%">ステータス</th>
+    </tr>
+{% for list in adminList %}
+    <tr>
+        <td>{{ list.id }}</td>
+        <td>{{ list.user }}</td>
+        <td>{{ list.auth }}</td>
+        <td>{{ list.status }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endif %}
 {% endblock %}
-
