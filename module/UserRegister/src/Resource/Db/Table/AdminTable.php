@@ -29,6 +29,19 @@ class AdminTable extends AbstractTableGateway
 
         return $this->getRow($this->getTableGateway()->selectWith($select));
     }
+    
+    public function getAdminList()
+    {
+        $select = $this->getTableGateway()->getSql()->select();
+        $select->columns([
+            'id',
+            'user',
+            'auth',
+            'status',
+        ]);
+        $select->order('id ASC');
+        return $this->getArray($this->getTableGateway()->selectWith($select));
+    }
 }
 /*
 CREATE TABLE `admin` (

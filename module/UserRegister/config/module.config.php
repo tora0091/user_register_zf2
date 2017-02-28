@@ -92,6 +92,16 @@ return [
                     ],
                 ],
             ],
+            'admin_register' =>[
+                'type' => 'Segment',
+                'options' => [
+                    'route'    => '/admin/list[/[:action]]',
+                    'defaults' => [
+                        'controller' => 'UserRegister\Controller\AdminRegister',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
         ],
     ],
     'service_manager' => [
@@ -118,6 +128,7 @@ return [
             'UserRegister\Service\SearchService' => Service\Factories\SearchServiceFactory::class,
             'UserRegister\Service\UpdateService' => Service\Factories\UpdateServiceFactory::class,
             'UserRegister\Service\InfomationService' => Service\Factories\InfomationServiceFactory::class,
+            'UserRegister\Service\AdminRegisterService' => Service\Factories\AdminRegisterServiceFactory::class,
         ],
     ],
     'translator' => [
@@ -140,6 +151,7 @@ return [
             'UserRegister\Controller\Search' => Controller\Factories\SearchControllerFactory::class,
             'UserRegister\Controller\Update' => Controller\Factories\UpdateControllerFactory::class,
             'UserRegister\Controller\Ajax\CheckNumber' => Controller\Factories\CheckNumberControllerFactory::class,
+            'UserRegister\Controller\AdminRegister' => Controller\Factories\AdminRegisterControllerFactory::class,
         ],
     ],
     'controller_plugins' => [
